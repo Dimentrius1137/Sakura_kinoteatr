@@ -26,7 +26,7 @@ for(let i = 0; i < 5; i++)
     if(i % 3 == 0)
     {
         catalog.style.gridTemplateRows = `repeat(${rows+=1}, 450px)`;
-        console.log(rows)
+
     }
     CreateCards();
 }
@@ -59,7 +59,7 @@ async function GetData()
             else{
                 card[i].children[1].innerHTML = films.alternativeName;
             }
-            console.log(films)
+
         }
         catch(er){
             console.log(`error: ${er}`)
@@ -70,4 +70,13 @@ async function GetData()
 
 
 
+let number = 100;
 
+document.addEventListener('click', function(){
+    number+=100;
+    console.log(number)
+    if(number > window.innerHeight)
+    {
+        console.log("more")
+    }
+})
