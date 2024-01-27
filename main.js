@@ -39,7 +39,7 @@ moreBtn.addEventListener('click', function()
         {
             CreateCards();
         }
-        // GetData()
+        GetData()
     } 
 
     //Костыльная хуета
@@ -51,13 +51,13 @@ moreBtn.addEventListener('click', function()
         {
             CreateCards();
         }
-        // GetData()
+        GetData()
     }
     if(rows > 12)
     {
         this.style.display = "none";
     }
-    console.log(rows)
+ 
     
 })
 
