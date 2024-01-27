@@ -4,6 +4,7 @@ header{
     background-color: black;
     color: white;
     display: flex;
+
     justify-content: space-between;
 }
 body{
@@ -51,38 +52,67 @@ p{
     margin: 0;
    
 }
+.main-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
 
+}
+.main-slider{
+    width: 50%;
+    height: 500px;
+    background-color: rgb(126, 160, 255);
+    margin: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .catalog{
     width: 100%;
-    height: 100vh;
+    /* flex-grow: 1; */
+    height: auto;
     display: grid;
     place-items: center;
     grid-template-columns: repeat(4, 400px);
- 
-    
+    grid-template-rows: repeat(2, 400px);
 }
 
 .card{
-    width: 250px;
-    height: 400px;
+    width: 200px;
+    height: 300px;
     border: 1px solid black;
     position: relative;
     word-wrap: break-word;
 }
 
 .poster{
-   width: 250px;
-   max-height: 350px; 
+   width: 200px;
+   max-height: 250px; 
 }
 
+.more{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 70px;
+    margin-top: 50px;
+}
 @media (min-width: 1280px) and (max-width: 1600px) {
+    .main-slider{
+        height: 300px;
+
+    }
     .catalog{
         grid-template-columns: repeat(3, 400px);
     }
+
 }
 @media (max-width: 1280px) {
     .catalog{
         /*Сделать списком вертикальным а не сеткой*/
         grid-template-columns: repeat(2, 300px);
     }
+
 }
