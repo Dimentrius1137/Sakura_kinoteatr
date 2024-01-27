@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function()
     {
         CreateCards();
     }
-    // GetData();
+    GetData();
 })
 
 let rows = 2;
@@ -39,7 +39,7 @@ moreBtn.addEventListener('click', function()
         {
             CreateCards();
         }
-        GetData()
+        GetData();
     } 
 
     //Костыльная хуета
@@ -51,12 +51,12 @@ moreBtn.addEventListener('click', function()
         {
             CreateCards();
         }
-        GetData()
+        GetData();
     }
-    if(rows > 12)
-    {
-        this.style.display = "none";
-    }
+    // if(rows > 12)
+    // {
+    //     this.style.display = "none";
+    // }
  
     
 })
