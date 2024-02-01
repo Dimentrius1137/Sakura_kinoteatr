@@ -7,30 +7,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    
     <header>
         <div class="logo-cont">
-            <a href="" class="logo-link"><img src="interface items/logo.jpg" class="logo">Логотип</a>
+            <a href="" class="logo-link"><img src="interface items/logo.jpg" class="logo"></a>
+            Логотип
         </div>
+        <div class="search">
+            Поиск: <input type="text">
+        </div>
+        
         <div class="topMenu-cont">
-            <input type="text">
             <span>Войти</span>
-            <!-- <img src="" alt="" class="user-image"> -->
-            <div class="user-image"></div>
-            <img src="interface items/arrow.png" alt="" class="top-arrow">
+            <img src="interface items/none_pic.png" alt="" class="user-image">
+            <div class="drop_menu">
+                <img src="interface items/arrow.png" alt="" class="top-arrow" onclick="Hide_DropMenu()">
+                <ul class="list-hide">
+                    <li>Личный кабинет</li>
+                    <li>Настройки</li>
+                    <li>Сменить тему</li>
+                    <li>Информация</li>
+                </ul>
+            </div>
+           
+            
         </div>
     </header>
 
     <main>
-        <nav class="navbar">
-            <a href="">Фильмы</a>
-            <a href="">Сериалы</a>
-            <ul>
-                Категории
-                <li><a href="">Жанры</a></li>
-                <li><a href="">Рейтинг</a></li>
-                <li><a href="">Возрастное ограничение</a></li>
-            </ul>
-        </nav>
+        <button class="open_close_navbar">вкл</button>
+        <div class="navbar-cont">
+            <nav class="navbar">
+                <a href="">Фильмы</a>
+                <a href="">Сериалы</a>
+                <ul>
+                    Категории
+                    <li><a href="">Жанры</a></li>
+                    <li><a href="">Рейтинг</a></li>
+                    <li><a href="">Возрастное ограничение</a></li>
+                </ul>
+            </nav>
+        </div>
+       
         <div class="main-content">
             <div class="main-slider">Тут будет каруселька</div>
             <p>Каталог:</p>
@@ -40,7 +58,7 @@
         </div>
         
     </main>
-    <button class="more">Ещё</button>
+    <button class="more" onclick="AddCards()">Ещё</button>
     <footer>
     </footer>
     <script src="main.js"></script>

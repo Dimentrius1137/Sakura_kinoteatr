@@ -1,56 +1,112 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
 header{
     width: 100%;
     height: 80px;
     background-color: black;
     color: white;
     display: flex;
-
+    position: relative;
+    z-index: 4;
     justify-content: space-between;
+    align-items: center;
 }
-body{
-    margin: 0;
-    padding: 0;
-}
-
-.logo{
-    width: 50px;
-    height: 60px;
-}
-
-main{
+.drop_menu{
+    height: 80px;
     display: flex;
-    flex-direction: row;
+
+    /* justify-content: start; */
+
+        align-items: end;
+    flex-direction: column;
 }
-.navbar{
-    width: 170px;
-    height: 300px;
+
+
+.list-hide{
+    position: absolute;
+    top: 80px;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid black;
+    display: none;
+
+}
+.list{
+
+    display: block;
+}
+.list li{
     background-color: gray;
     position: relative;
-    z-index: 2;
-    
-}
+    color: red;
+    border: 1px solid gray;
+    }
 
 .top-arrow{
+    position: relative;
+    top: 20px;
     transform: rotate(90deg);
-    transition: 1s;
+    transition: 0.5s;
+    margin: 0;
+    margin-left: var(--general);
+    margin-right: var(--general);
 }
 
-.top-arrow:hover{
+.top-arrow-up{
     transform: rotate(90deg) rotateY(180deg);
 
 }
 
+.logo{
+    width: 40px;
+    height: 50px;
+}
+.logo-cont{
+    display: flex;
+    flex-direction: column;
+}
+/*МЕНЮ В ХЭДЕРЕ*/
+:root{
+    --general: 20px; 
+}
+/*ну да она не нужна, просто по приколу тут*/
+
+.topMenu-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+span{
+    margin-left: var(--general);
+}
 .user-image{
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: white;
+    margin-left: var(--general);
     
+}
+
+
+main{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 p{
     margin: 0;
-   
+   text-align: center;
+
 }
 .main-content{
     display: flex;
@@ -61,7 +117,7 @@ p{
 }
 .main-slider{
     width: 50%;
-    height: 500px;
+    height: 200px;
     background-color: rgb(126, 160, 255);
     margin: 40px;
     display: flex;
@@ -71,7 +127,7 @@ p{
 .catalog{
     width: 100%;
     /* flex-grow: 1; */
-    height: auto;
+    justify-content: center;
     display: grid;
     place-items: center;
     grid-template-columns: repeat(4, 400px);
@@ -84,6 +140,8 @@ p{
     border: 1px solid black;
     position: relative;
     word-wrap: break-word;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .poster{
@@ -97,22 +155,94 @@ p{
     transform: translateX(-50%);
     width: 150px;
     height: 70px;
-    margin-top: 50px;
+
 }
+
+/*НАВ БАР*/
+.navbar{
+    width: 150px;
+    height: 300px;
+    background-color: gray;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 90px;
+    transition: 0.1s linear;
+}
+.open_close_navbar{
+    display: none;
+}
+.if_page_scroll{
+    padding-top: 20px;
+    
+}
+
+/*на других мониторах*/
 @media (min-width: 1280px) and (max-width: 1600px) {
     .main-slider{
         height: 300px;
 
     }
     .catalog{
-        grid-template-columns: repeat(3, 400px);
+        grid-template-columns: repeat(3, 350px);
     }
 
 }
-@media (max-width: 1280px) {
+
+/*для мобилки*/
+@media (max-width: 1000px) {
     .catalog{
         /*Сделать списком вертикальным а не сеткой*/
-        grid-template-columns: repeat(2, 300px);
+        grid-template-columns: repeat(3, 120px);
+        grid-template-rows: repeat(2, 160px);
+
+    } 
+    .card{
+        border-radius: 15px;
+        width: 90px;
+        height: 130px;
+        overflow: hidden;
+    }
+    .poster{
+    width: 90px;
+    max-height: 110px; 
     }
 
+    input{
+        margin-top: var(--general);
+        
+        width: 100px;
+        height: 30px;
+    }
+
+    .navbar{
+        top:124px;
+    }
+    .navbar-cont{
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        top:0;
+        display: none;
+        background-color: rgba(0,0,0,0.3);
+    
+    }
+    .open_close_navbar{
+        position: fixed;
+        z-index: 4;
+        height: 24px;
+        display: block;
+    }
+    .navbar-cont-on{
+        display: block;
+        z-index: 1;
+    }
+
+
+    p{
+        font-size: 8px;
+    }
 }
