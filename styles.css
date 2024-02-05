@@ -12,7 +12,7 @@ header{
     color: white;
     display: flex;
     position: relative;
-    z-index: 4;
+    z-index: 3;
     justify-content: space-between;
     align-items: center;
 }
@@ -102,7 +102,7 @@ main{
     flex-direction: row;
     width: 100%;
 }
-
+  
 p{
     margin: 0;
    text-align: center;
@@ -115,17 +115,51 @@ p{
     align-items: center;
 
 }
-.main-slider{
-    width: 50%;
-    height: 200px;
-    background-color: rgb(126, 160, 255);
+.swiper{
+    width: 960px;
+    height: 540px;
+    background-color: black;
     margin: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid gray;
 }
+.local_img{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+#dynamic{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+.img-cont{
+    width: 40%;
+    box-shadow: inset 30px 0px 25px rgba(0,0,0,1);
+    display: flex;
+    flex-direction: row;
+}
+.dynamic_img{
+    position: relative;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+}
+.title{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+}
+
+
 .catalog{
     width: 100%;
+
     /* flex-grow: 1; */
     justify-content: center;
     display: grid;
@@ -180,8 +214,13 @@ p{
     
 }
 
+
 /*на других мониторах*/
-@media (min-width: 1280px) and (max-width: 1600px) {
+@media (min-width: 1000px) and (max-width: 1600px) {
+    .swiper{
+        width: 683px;
+        height: 384px;
+    }
     .main-slider{
         height: 300px;
 
@@ -200,6 +239,11 @@ p{
         grid-template-rows: repeat(2, 160px);
 
     } 
+    .swiper{
+        width: 276px;
+        height: 149px;
+
+    }
     .card{
         border-radius: 15px;
         width: 90px;
@@ -232,13 +276,13 @@ p{
     }
     .open_close_navbar{
         position: fixed;
-        z-index: 4;
+        z-index: 3;
         height: 24px;
         display: block;
     }
     .navbar-cont-on{
         display: block;
-        z-index: 1;
+        z-index: 2;
     }
 
 

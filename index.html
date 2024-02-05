@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Кинотеатр</title>
     <link rel="stylesheet" href="styles.css">
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 </head>
 <body>
     
@@ -50,7 +54,31 @@
         </div>
        
         <div class="main-content">
-            <div class="main-slider">Тут будет каруселька</div>
+            <div class="swiper">
+  
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" id="dynamic">
+                        <div class="title">
+                            Название
+                        </div>
+                        <div class="img-cont">
+                            <img class="dynamic_img" src="">
+                        </div>
+                    </div>
+
+                  <div class="swiper-slide"><img class="local_img" src="interface items/artorias.jpg"></div>
+
+                  <div class="swiper-slide"><img class="local_img" src="interface items/koshki.jpg"></div>
+
+                </div>
+
+                <div class="swiper-pagination"></div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+              
+              </div>
             <p>Каталог:</p>
             <div class="catalog"></div>
 
@@ -61,6 +89,9 @@
     <button class="more" onclick="AddCards()">Ещё</button>
     <footer>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="main.js"></script>
+ 
 </body>
 </html>

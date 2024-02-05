@@ -7,6 +7,10 @@ const navbarCont = document.querySelector('.navbar-cont');
 const arrow = document.querySelector('.top-arrow');
 const dropMenu = document.querySelector('.list-hide');
 
+//сделать через потомков динамического слайда
+const slide_img = document.querySelector('.dynamic_img');
+const slide_title = document.querySelector('.title');
+
 function Hide_DropMenu()
 {
     dropMenu.classList.toggle("list");
@@ -55,7 +59,7 @@ function AddCards()
             CreateCards();
         }
 
-        GetData();
+        // GetData();
     } 
 
     //Костыльная хуета
@@ -70,7 +74,7 @@ function AddCards()
             CreateCards();
         }
 
-        GetData();
+        // GetData();
     }
 }
 
@@ -98,7 +102,17 @@ const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4&year=2014"
 async function GetData()
 {
     const card = document.querySelectorAll('.card');
-
+    try{
+        const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+        const films = await data.json();
+        slide_img.src = films.poster.url;
+        slide_title.innerHTML = films.name;
+    }
+    catch{
+        slide_img.src = _none_poster;
+        slide_title.innerHTML = "Тут название";
+    }
+    
     for(let i = 0; i < card.length; i++)
     {
 
@@ -106,12 +120,15 @@ async function GetData()
         {
             const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const films = await data.json();
+            console.log(films);
             if(films.poster.url != null)
             {
-                card[i].children[0].src = films.poster.url
+                card[i].children[0].src = films.poster.url;
+                
             }
             else{
                 card[i].children[0].src = _none_poster;
+                slide_img.src = _none_poster;
             }
             if(films.name != null)
             {
@@ -131,3 +148,20 @@ async function GetData()
     
 }
 
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+  
+
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    
+    pagination: {
+        el: '.swiper-pagination',
+      },
+  });
