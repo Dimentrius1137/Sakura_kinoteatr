@@ -357,8 +357,7 @@ p{
     }
 
     input{
-        margin-top: var(--general);
-        
+        margin-top: var(--general);  
         width: 100px;
         height: 30px;
     }
