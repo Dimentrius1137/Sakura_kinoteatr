@@ -8,6 +8,8 @@ const arrow = document.querySelector('.top-arrow');
 const dropMenu = document.querySelector('.list-hide');
 
 //сделать через потомков динамического слайда
+const slides = document.querySelectorAll('.swiper-slide');
+
 const slide_img = document.querySelector('.dynamic_img');
 const slide_title = document.querySelector('.title');
 
@@ -17,8 +19,11 @@ function Hide_DropMenu()
     arrow.classList.toggle("top-arrow-up");
 }
 
+
+
+
 function CreateCards()
-{
+{    
 
     const newCard = document.createElement('div');
     newCard.classList.add('card');
@@ -29,6 +34,16 @@ function CreateCards()
     catalog.appendChild(newCard);
 
 }
+let loadSpinner = document.createElement('div');
+let spinner = document.createElement('div');
+function Loading()
+{
+
+    loadSpinner.classList.add("loading");
+    catalog.appendChild(loadSpinner);
+    spinner.classList.add("spinner");
+    loadSpinner.appendChild(spinner);
+}
 
 //будет задаваться функцией состояния окна в зависиости от разрешения
 let itemsCount = 6;
@@ -38,17 +53,22 @@ if(window.innerWidth > 1600)
 }
 document.addEventListener('DOMContentLoaded', function()
 {
+    // Loading()
     for(let i = 0; i < itemsCount; i++)
     {
         CreateCards();
     }
+
     GetData();
+    
 })
 
 let rows = 2;
 function AddCards()
 {
-    
+    loadSpinner = document.createElement('div');
+
+    // Loading()
     if(window.innerWidth >= 1280 && document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight + 150)
     {
         rows+= 2;
@@ -59,7 +79,7 @@ function AddCards()
             CreateCards();
         }
 
-        // GetData();
+        GetData();
     } 
 
     //Костыльная хуета
@@ -74,7 +94,7 @@ function AddCards()
             CreateCards();
         }
 
-        // GetData();
+        GetData();
     }
 }
 
@@ -101,6 +121,7 @@ document.addEventListener('scroll', NavScroll)
 const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4&year=2014";
 async function GetData()
 {
+    loadSpinner.remove();
     const card = document.querySelectorAll('.card');
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
@@ -108,7 +129,8 @@ async function GetData()
         slide_img.src = films.poster.url;
         slide_title.innerHTML = films.name;
     }
-    catch{
+    catch (er){
+        console.log(er);
         slide_img.src = _none_poster;
         slide_title.innerHTML = "Тут название";
     }
@@ -120,7 +142,7 @@ async function GetData()
         {
             const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const films = await data.json();
-            console.log(films);
+            // console.log(films);
             if(films.poster.url != null)
             {
                 card[i].children[0].src = films.poster.url;
@@ -146,7 +168,9 @@ async function GetData()
         }
     }
     
+    
 }
+
 
 const swiper = new Swiper('.swiper', {
     // Optional parameters
@@ -158,10 +182,20 @@ const swiper = new Swiper('.swiper', {
     // Navigation arrows
     navigation: {
       nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      prevEl: '.swiper-button-prev'
     },
+    
     
     pagination: {
         el: '.swiper-pagination',
       },
+      slidesPerView: 1.4,
+      centeredSlides: true
+
+
+  });
+  swiper.on('slideChange', function () {
+    slides.forEach((slide) => {
+        slide.style.transition = ".2s linear"
+    })
   });
