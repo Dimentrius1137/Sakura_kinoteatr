@@ -24,7 +24,6 @@ function Hide_DropMenu()
 
 function CreateCards()
 {    
-
     const newCard = document.createElement('div');
     newCard.classList.add('card');
     const newPoster = document.createElement('img');
@@ -53,7 +52,7 @@ if(window.innerWidth > 1600)
 }
 document.addEventListener('DOMContentLoaded', function()
 {
-    // Loading()
+    Loading()
     for(let i = 0; i < itemsCount; i++)
     {
         CreateCards();
@@ -68,7 +67,7 @@ function AddCards()
 {
     loadSpinner = document.createElement('div');
 
-    // Loading()
+    Loading()
     if(window.innerWidth >= 1280 && document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight + 150)
     {
         rows+= 2;
