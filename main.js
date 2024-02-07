@@ -50,9 +50,10 @@ if(window.innerWidth > 1600)
 {
     itemsCount = 8;
 }
+Loading()
 document.addEventListener('DOMContentLoaded', function()
 {
-    Loading()
+
     for(let i = 0; i < itemsCount; i++)
     {
         CreateCards();
@@ -120,7 +121,7 @@ document.addEventListener('scroll', NavScroll)
 const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4&year=2014";
 async function GetData()
 {
-    loadSpinner.remove();
+    
     const card = document.querySelectorAll('.card');
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
@@ -166,7 +167,7 @@ async function GetData()
             console.log(`error: ${er}`)
         }
     }
-    
+    loadSpinner.remove();
     
 }
 
