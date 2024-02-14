@@ -1,4 +1,4 @@
-let _none_poster = "interface items/none_pic.png"
+let _none_poster = "interface_items/none_pic.png"
 const catalog = document.querySelector('.catalog');
 const moreBtn = document.querySelector('.more');
 const navbar = document.querySelector('.navbar');
@@ -170,7 +170,7 @@ async function GetData()
         catch(er){
             card[i].children[0].src = _none_poster;
             card[i].children[1].innerHTML = "none";
-            card[i].children[1].href = 'page?error';
+            card[i].children[1].href = 'page.html?error';
             console.log(`error: ${er}`)
         }
     }

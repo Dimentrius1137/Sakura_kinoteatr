@@ -74,7 +74,7 @@ header{
 /*МЕНЮ В ХЭДЕРЕ*/
 :root{
     --general: 20px; 
-    --bg: url('interface items/arrow.png')
+    --bg: url('interface_items/arrow.png')
 }
 /*ну да она не нужна, просто по приколу тут*/
 
@@ -281,7 +281,7 @@ p{
 .spinner{
     width: 50px;
     height: 50px;
-    background-image: url('interface items/loading.png');
+    background-image: url('interface_items/loading.png');
     background-size: cover;
     animation: spinning 2s infinite;
 

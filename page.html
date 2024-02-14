@@ -22,11 +22,11 @@
     padding: 50px;
 }
 .spinner{
-    position: relative;
+    position: absolute;
     z-index: 3;
     width: 50px;
     height: 50px;
-    background-image: url('/interface_items/loading.png');
+    background-image: url('interface_items/loading.png');
     background-size: cover;
     animation: spinning 2s infinite;
 
@@ -56,8 +56,9 @@
         const container = document.querySelector('.container')
         const titleName = document.querySelector('h1');
         const poster = document.querySelector('img');
-        const loadSpinner = document.createElement('div');
-            const spinner = document.createElement('div');
+        let _none_poster = "interface_items/none_pic.png"
+        let loadSpinner = document.createElement('div');
+        let spinner = document.createElement('div');
         function Loading()
         {
 
@@ -71,11 +72,19 @@
         let URLcontent = (new URL(document.location)).searchParams;
         const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${encodeURI(URLcontent.get("name"))}`;
         async function GetData(){
+            try{
             const data1 = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const title = await data1.json();
             poster.src = title.docs[0].poster.url;
             titleName.innerHTML = URLcontent.get("name");
             console.log(title);
+            }
+            catch(er){
+                console.log(er);
+                poster.src = _none_poster;
+                titleName.innerHTML = "Тут название";
+
+            }
             loadSpinner.remove();
         }
         GetData()
