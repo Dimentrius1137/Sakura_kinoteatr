@@ -21,6 +21,8 @@ function Hide_DropMenu()
 
 
 
+let newName = document.createElement('a');
+
 
 function CreateCards()
 {    
@@ -28,7 +30,7 @@ function CreateCards()
     newCard.classList.add('card');
     const newPoster = document.createElement('img');
     newPoster.classList.add('poster');
-    const newName = document.createElement('p');
+    const newName = document.createElement('a');
     newCard.append(newPoster, newName);
     catalog.appendChild(newCard);
 
@@ -46,6 +48,7 @@ function Loading()
 
 //будет задаваться функцией состояния окна в зависиости от разрешения
 let itemsCount = 6;
+let iterator = 0;
 if(window.innerWidth > 1600)
 {
     itemsCount = 8;
@@ -66,8 +69,9 @@ document.addEventListener('DOMContentLoaded', function()
 let rows = 2;
 function AddCards()
 {
+	iterator+= itemsCount;
     loadSpinner = document.createElement('div');
-
+    
     Loading()
     if(window.innerWidth >= 1280 && document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight + 150)
     {
@@ -118,7 +122,7 @@ document.addEventListener('scroll', NavScroll)
 
 //получение данных
 
-const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4&year=2014";
+const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4";
 async function GetData()
 {
     
@@ -135,7 +139,7 @@ async function GetData()
         slide_title.innerHTML = "Тут название";
     }
     
-    for(let i = 0; i < card.length; i++)
+    for(let i = iterator; i < card.length; i++)
     {
 
         try
@@ -155,15 +159,18 @@ async function GetData()
             if(films.name != null)
             {
                 card[i].children[1].innerHTML = films.name;
+				card[i].children[1].href = `page.html?name=${films.name}`;
             }
             else{
                 card[i].children[1].innerHTML = films.alternativeName;
+				card[i].children[1].href = `page.html?name=${films.alternativeName}`;
             }
 
         }
         catch(er){
             card[i].children[0].src = _none_poster;
             card[i].children[1].innerHTML = "none";
+            card[i].children[1].href = 'page?error';
             console.log(`error: ${er}`)
         }
     }

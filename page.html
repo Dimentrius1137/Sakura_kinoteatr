@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 200px;
+            height: 350px;
+        }
+        .loading{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: white;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+.spinner{
+    position: relative;
+    z-index: 3;
+    width: 50px;
+    height: 50px;
+    background-image: url('/interface_items/loading.png');
+    background-size: cover;
+    animation: spinning 2s infinite;
+
+}
+@keyframes spinning{
+    0%{
+        transform: rotateZ(0deg);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+.container{
+    position: relative;
+    width: 500px;
+    height: 500px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Page</h1>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        const container = document.querySelector('.container')
+        const titleName = document.querySelector('h1');
+        const poster = document.querySelector('img');
+        const loadSpinner = document.createElement('div');
+            const spinner = document.createElement('div');
+        function Loading()
+        {
+
+            loadSpinner.classList.add("loading");
+            container.appendChild(loadSpinner);
+            spinner.classList.add("spinner");
+            loadSpinner.appendChild(spinner);
+        }
+        Loading()
+
+        let URLcontent = (new URL(document.location)).searchParams;
+        const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${encodeURI(URLcontent.get("name"))}`;
+        async function GetData(){
+            const data1 = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+            const title = await data1.json();
+            poster.src = title.docs[0].poster.url;
+            titleName.innerHTML = URLcontent.get("name");
+            console.log(title);
+            loadSpinner.remove();
+        }
+        GetData()
+    </script>
+</body>
+</html>
