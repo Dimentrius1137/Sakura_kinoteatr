@@ -281,9 +281,10 @@ p{
 .spinner{
     width: 50px;
     height: 50px;
-    background-image: url('interface_items/loading.png');
+    background-image: url('../interface_items/loading.png');
     background-size: cover;
     animation: spinning 2s infinite;
+    
 
 }
 

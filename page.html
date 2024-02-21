@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        img{
-            width: 200px;
-            height: 350px;
-        }
+
         .loading{
     width: 100%;
     height: 100%;
@@ -41,21 +38,88 @@
 }
 .container{
     position: relative;
-    width: 500px;
+    width: 100%;
     height: 500px;
 }
+
+img{
+    width: 200px;
+    height: 300px;
+    }
+.inner_container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+}
+
+.rating_KP{
+    color: white;
+    background-color: orangered;
+    margin-left: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+.block1{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+.block2{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0;
+}
+.description{
+    word-break: break-all;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid gray;
+}
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Page</h1>
-        <img src="" alt="">
+            <div class="inner_container">
+                <div class="block1">
+                    <img src="" alt="">
+                    <div class="rating_KP">
+                        КП
+                        <span class="rating"></span>
+                    </div>
+                </div>
+            
+                    <div class="block2">
+                        <div class="description">
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
     </div>
 
     <script>
         const container = document.querySelector('.container')
         const titleName = document.querySelector('h1');
         const poster = document.querySelector('img');
+        const ratingKP = document.querySelector('.rating');
+        const desc = document.querySelector('.description');
         let _none_poster = "interface_items/none_pic.png"
         let loadSpinner = document.createElement('div');
         let spinner = document.createElement('div');
@@ -73,11 +137,17 @@
         const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${encodeURI(URLcontent.get("name"))}`;
         async function GetData(){
             try{
-            const data1 = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
-            const title = await data1.json();
-            poster.src = title.docs[0].poster.url;
+            const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+            const info = await data.json();
+            console.log(info);
+            ratingKP.innerHTML = Math.round(info.docs[0].rating.kp * 10) / 10;
+            desc.innerHTML = info.docs[0].description
+            poster.src = info.docs[0].poster.url;
             titleName.innerHTML = URLcontent.get("name");
-            console.log(title);
+            if(info.docs[0].poster.url == null)
+            {
+                poster.src = _none_poster;
+            }
             }
             catch(er){
                 console.log(er);
