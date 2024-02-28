@@ -4,7 +4,9 @@ html, body{
     width: 100%;
     overflow-x: hidden;
 }
-
+*{
+    box-sizing: border-box;
+}
 header{
     width: 100%;
     height: 80px;
@@ -133,14 +135,12 @@ p{
     width: 1280px;
     height: 540px;
     margin: 30px;
-
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 .swiper .swiper-wrapper{
-
     display: flex;
     align-items: center;
 }
@@ -148,6 +148,7 @@ p{
 .swiper .swiper-slide{
     position: relative;
     z-index: 2;
+    height: 100%;
 }
 .swiper .swiper-slide-prev{
     height: 80%;
@@ -164,8 +165,8 @@ p{
     z-index: 1;
 }
 .swiper .swiper-slide > img{
+    border: 10px solid gray;
     object-fit:fill;
-    border: 1px solid gray;
     border-radius: 15px;
 }
 .local_img{
@@ -179,12 +180,11 @@ p{
     justify-content: space-between;
     color: white;
     background-color: black;
-    border: 1px solid gray;
     border-radius: 15px;
     overflow: hidden;
 }
 .img-cont{
-    width: 40%;
+    width: 50%;
     box-shadow: inset 30px 0px 20px rgba(0,0,0,1);
     border-left: 4px solid black;
     display: flex;
@@ -198,7 +198,7 @@ p{
     height: 100%;
 }
 .title{
-    box-shadow: 10px 0px 1px rgba(0,0,0,1);
+    box-shadow: 10px 0px 10px rgba(0,0,0,1);
     width: 60%;
     display: flex;
     justify-content: center;
@@ -227,6 +227,9 @@ p{
     word-wrap: break-word;
     border-radius: 15px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .poster{
@@ -268,7 +271,7 @@ p{
 
 .loading{
     width: 100%;
-    height: 700px;
+    height: 800px;
     position: absolute;
     z-index: 2;
     background-color: white;
@@ -300,25 +303,46 @@ p{
 /*на других мониторах*/
 @media (min-width: 1000px) and (max-width: 1600px) {
     .swiper{
-        width: 683px;
-        height: 384px;
+        width: 800px;
+        height: 350px;
     }
 
-    .main-slider{
-        height: 300px;
-
-    }
     .catalog{
         grid-template-columns: repeat(3, 350px);
     }
 
+    .swiper .swiper-slide > img{
+        border: 7px solid gray;
+    }
 }
 
 /*для мобилки*/
 @media (max-width: 1000px) {
+
+    .name_of_title{
+        width: 100%;
+        font-size: 12px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .swiper{
+        width: 276px;
+        height: 149px;
+
+    }
+    .swiper .swiper-slide > img{
+        border: 4px solid gray;
+    }
+    
+    .swiper .swiper-button-next::after, .swiper .swiper-button-prev::after{ 
+        font-size: 25px;
+    }
+    .swiper .swiper-button-next, .swiper .swiper-button-prev{ 
+        width: 10px;
+    }
     .loading{
 
-        height: 220px;
+        height: 320px;
     }
     .spinner{
         width: 20px;
@@ -326,11 +350,9 @@ p{
 
     
     }
-    .swiper .swiper-button-next::after, .swiper .swiper-button-prev::after{ 
-        font-size: 25px;
-    }
-    .swiper .swiper-button-next, .swiper .swiper-button-prev{ 
-        width: 10px;
+    .img-cont{
+        width: 50%;
+        box-shadow: inset 20px 0px 10px rgba(0,0,0,1);
     }
     .catalog{
         /*Сделать списком вертикальным а не сеткой*/
@@ -338,13 +360,10 @@ p{
         grid-template-rows: repeat(2, 160px);
 
     } 
-    .swiper{
-        width: 276px;
-        height: 149px;
 
-    }
     .title{
         font-size: 12px;
+        text-align: center;
     }
     .card{
         border-radius: 15px;
@@ -377,13 +396,13 @@ p{
     }
     .open_close_navbar{
         position: fixed;
-        z-index: 3;
+        z-index: 4;
         height: 24px;
         display: block;
     }
     .navbar-cont-on{
         display: block;
-        z-index: 2;
+        z-index: 3;
     }
 
 

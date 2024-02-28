@@ -31,6 +31,7 @@ function CreateCards()
     const newPoster = document.createElement('img');
     newPoster.classList.add('poster');
     const newName = document.createElement('a');
+    newName.classList.add('name_of_title');
     newCard.append(newPoster, newName);
     catalog.appendChild(newCard);
 
@@ -130,7 +131,8 @@ async function GetData()
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
         const films = await data.json();
-        slide_img.src = films.poster.url;
+        console.log(films);
+        slide_img.src = films.poster.url || films.poster.previewUrl;
         slide_title.innerHTML = films.name;
     }
     catch (er){
@@ -144,9 +146,10 @@ async function GetData()
 
         try
         {
+
             const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const films = await data.json();
-            // console.log(films);
+            console.log(films);
             if(films.poster.url != null)
             {
                 card[i].children[0].src = films.poster.url;
@@ -196,7 +199,7 @@ const swiper = new Swiper('.swiper', {
     pagination: {
         el: '.swiper-pagination',
       },
-      slidesPerView: 1.4,
+      slidesPerView: 1.5,
       centeredSlides: true
 
 

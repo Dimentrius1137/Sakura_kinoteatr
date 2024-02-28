@@ -80,22 +80,156 @@ img{
 .description{
     word-break: break-all;
     text-align: center;
-    margin-top: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
     padding: 20px;
     border-radius: 15px;
     border: 2px solid gray;
+    width: 60%;
+}
+header{
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    color: white;
+    display: flex;
+    position: relative;
+    z-index: 3;
+    justify-content: space-between;
+    align-items: center;
+}
+.drop_menu{
+    height: 80px;
+    display: flex;
+
+    /* justify-content: start; */
+
+        align-items: end;
+    flex-direction: column;
 }
 
+
+.list-hide{
+    position: absolute;
+    top: 80px;
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+    border: 1px solid black;
+    display: none;
+
+}
+.list{
+
+    display: block;
+}
+.list li{
+    background-color: gray;
+    position: relative;
+    color: red;
+    border: 1px solid gray;
+    }
+
+.top-arrow{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 20px;
+    transform: rotate(90deg);
+    transition: 0.5s;
+    margin: 0;
+    margin-left: var(--general);
+    margin-right: var(--general);
+}
+
+.top-arrow-up{
+    transform: rotate(90deg) rotateY(180deg);
+
+}
+
+.logo{
+    width: 40px;
+    height: 50px;
+}
+.logo-cont{
+    display: flex;
+    flex-direction: column;
+}
+/*МЕНЮ В ХЭДЕРЕ*/
+:root{
+    --general: 20px; 
+    --bg: url('interface_items/arrow.png')
+}
+/*ну да она не нужна, просто по приколу тут*/
+
+.topMenu-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+span{
+    margin-left: var(--general);
+}
+.user-image{
+    
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    margin-left: var(--general);
+    
+}
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+@media (max-width: 1000px) {
+    .description{
+        width: 100%;
+    }
+    input{
+        margin-top: var(--general);  
+        width: 100px;
+        height: 30px;
+    }
+}
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo-cont">
+            <a href="" class="logo-link"><img src="interface_items/logo.jpg" class="logo"></a>
+            Логотип
+        </div>
+        <div class="search">
+            Поиск: <input type="text">
+        </div>
+        
+        <div class="topMenu-cont">
+            <span>Войти</span>
+            <img src="interface_items/none_pic.png" alt="" class="user-image">
+            <div class="drop_menu">
+                <img src="interface_items/arrow.png" class="top-arrow" onclick="Hide_DropMenu()">
+                <ul class="list-hide">
+                    <li>Личный кабинет</li>
+                    <li>Настройки</li>
+                    <li>Сменить тему</li>
+                    <li>Информация</li>
+                </ul>
+            </div>
+           
+            
+        </div>
+    </header>
     <div class="container">
         <h1>Page</h1>
             <div class="inner_container">
                 <div class="block1">
-                    <img src="" alt="">
+                    <img class="poster" src="" alt="">
                     <div class="rating_KP">
                         КП
                         <span class="rating"></span>
@@ -103,8 +237,7 @@ img{
                 </div>
             
                     <div class="block2">
-                        <div class="description">
-                    </div>
+                        <div class="description"></div>
                 </div>
             </div>
 
@@ -116,13 +249,21 @@ img{
 
     <script>
         const container = document.querySelector('.container')
+        const arrow = document.querySelector('.top-arrow');
+        const dropMenu = document.querySelector('.list-hide');
         const titleName = document.querySelector('h1');
-        const poster = document.querySelector('img');
+        const poster = document.querySelector('.poster');
         const ratingKP = document.querySelector('.rating');
         const desc = document.querySelector('.description');
         let _none_poster = "interface_items/none_pic.png"
         let loadSpinner = document.createElement('div');
         let spinner = document.createElement('div');
+
+        function Hide_DropMenu()
+{
+    dropMenu.classList.toggle("list");
+    arrow.classList.toggle("top-arrow-up");
+}
         function Loading()
         {
 
@@ -137,23 +278,27 @@ img{
         const url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${encodeURI(URLcontent.get("name"))}`;
         async function GetData(){
             try{
-            const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
-            const info = await data.json();
-            console.log(info);
-            ratingKP.innerHTML = Math.round(info.docs[0].rating.kp * 10) / 10;
-            desc.innerHTML = info.docs[0].description
-            poster.src = info.docs[0].poster.url;
-            titleName.innerHTML = URLcontent.get("name");
-            if(info.docs[0].poster.url == null)
-            {
-                poster.src = _none_poster;
-            }
+                const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+                const info = await data.json();
+                console.log(info);
+                ratingKP.innerHTML = Math.round(info.docs[0].rating.kp * 10) / 10;
+                desc.innerHTML = info.docs[0].description
+                poster.src = info.docs[0].poster.url;
+                titleName.innerHTML = URLcontent.get("name");
+                if(info.docs[0].poster.url == null)
+                {
+                    poster.src = _none_poster;
+                }
+                if(info.docs[0].description == "")
+                {
+                    desc.style.display = "none"
+                }
             }
             catch(er){
                 console.log(er);
                 poster.src = _none_poster;
                 titleName.innerHTML = "Тут название";
-
+                desc.innerHTML = "Тут описание"
             }
             loadSpinner.remove();
         }
