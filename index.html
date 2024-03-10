@@ -18,25 +18,36 @@
             <a href="" class="logo-link"><img src="interface_items/logo.jpg" class="logo"></a>
             Логотип
         </div>
-        <div class="search">
-            Поиск: <input type="text">
-        </div>
         
-        <div class="topMenu-cont">
-            <span>Войти</span>
-            <img src="interface_items/none_pic.png" alt="" class="user-image">
-            <div class="drop_menu">
-                <img src="interface_items/arrow.png" alt="" class="top-arrow" onclick="Hide_DropMenu()">
-                <ul class="list-hide">
-                    <li>Личный кабинет</li>
-                    <li>Настройки</li>
-                    <li>Сменить тему</li>
-                    <li>Информация</li>
-                </ul>
-            </div>
-           
+        <div class="menu">
+            <div class="button_state"></div>
+            <div class="header_elements">
+                <div class="search">
+                    <input placeholder="Поиск" type="text">
+                    <ul class="search_drop_list">
+                        <li>111111111111</li>
+                        <li>111111111111</li>
+                        <li>111111111111</li>
+                        <li>111111111111</li>
+                    </ul>
+                </div>
             
+                <span>Войти</span>
+                <img src="interface_items/none_pic.png" alt="" class="user-image">
+                <div class="drop_menu">
+                    <img src="interface_items/arrow.png" alt="" class="top-arrow" onclick="Hide_DropMenu()">
+                    <ul class="list-hide">
+                        <li>Личный кабинет</li>
+                        <li>Настройки</li>
+                        <li>Сменить тему</li>
+                        <li>Информация</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+   
+            
+
     </header>
 
     <main>
@@ -47,14 +58,17 @@
                 <a href="">Сериалы</a>
                 <ul>
                     Категории
-                    <li><a href="">Жанры</a></li>
-                    <li><a href="">Рейтинг</a></li>
-                    <li><a href="">Возрастное ограничение</a></li>
+                    <li><a href="">Фильмы</a></li>
+                    <li><a href="">Сериалы</a></li>
+                    <li><a href="">Мультфильмы</a></li>
+                    <li><a href="">Аниме</a></li>
+                    <li><a href="">Мультсериалы</a></li>
                 </ul>
             </nav>
         </div>
-       
+        
         <div class="main-content">
+
             <div class="swiper">
   
                 <div class="swiper-wrapper">
@@ -75,12 +89,15 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
               </div>
+
             <p>Каталог:</p>
-            <div class="catalog"></div>
+            <img class="display_mode" src="interface_items/list.png" alt="">
+            <div class="catalog">       
+            </div>
 
 
         </div>
-        
+
     </main>
     <button class="more" onclick="AddCards()">Ещё</button>
     <footer>

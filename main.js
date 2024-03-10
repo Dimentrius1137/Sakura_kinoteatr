@@ -6,6 +6,58 @@ const navbarBtn = document.querySelector('.open_close_navbar');
 const navbarCont = document.querySelector('.navbar-cont');
 const arrow = document.querySelector('.top-arrow');
 const dropMenu = document.querySelector('.list-hide');
+const list_btn = document.querySelector('.display_mode');
+const search_list = document.querySelector('.search_drop_list');
+const search_field = document.querySelector('input');
+const state_btn = document.querySelector('.button_state');
+const h_elements = document.querySelector('.header_elements');
+
+state_btn.addEventListener('click', (el) => {
+    el.target.classList.toggle('open');
+    h_elements.classList.toggle('open');
+    // Сделать меню анимированным, покрасивше и стики
+})
+
+list_btn.addEventListener('click', () => {
+    catalog.classList.toggle('catalog-list');
+    catalog.classList.toggle('catalog');
+
+    catalog.querySelectorAll('#newCard').forEach((el) => {
+        el.classList.toggle(('card'));
+        el.classList.toggle(('list_mode'));  
+        if(el.classList.contains('list_mode'))
+        {
+            list_btn.src = "interface_items/grid.png"
+            el.children[2].style.display = "block"
+        }  
+        else{
+            list_btn.src = "interface_items/list.png"
+            el.children[2].style.display = "none"
+        }
+})
+    
+})
+
+//поиск
+search_field.addEventListener('input', (field) => {
+    
+    search_list.style.display = "block";
+    if(field.target.value == "")
+    {
+        search_list.style.display = "none";
+    }
+})
+
+// async function findTtitles(value){
+    
+//     const search_url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${value}`;
+    
+//     const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+//     const films = await data.json();
+    
+//     const titles = [];
+// }
+
 
 //сделать через потомков динамического слайда
 const slides = document.querySelectorAll('.swiper-slide');
@@ -21,18 +73,19 @@ function Hide_DropMenu()
 
 
 
-let newName = document.createElement('a');
-
 
 function CreateCards()
 {    
     const newCard = document.createElement('div');
     newCard.classList.add('card');
-    const newPoster = document.createElement('img');
-    newPoster.classList.add('poster');
+    newCard.id = "newCard";
     const newName = document.createElement('a');
     newName.classList.add('name_of_title');
-    newCard.append(newPoster, newName);
+    const newPoster = document.createElement('img');
+    newPoster.classList.add('poster');
+    const newDesc = document.createElement('div');
+    newDesc.classList.add('desc');
+    newCard.append(newPoster, newName, newDesc);
     catalog.appendChild(newCard);
 
 }
@@ -132,7 +185,12 @@ async function GetData()
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
         const films = await data.json();
         console.log(films);
+        //ТУТ
         slide_img.src = films.poster.url || films.poster.previewUrl;
+        if(films.poster.url == null && films.poster.previewUrl == null)
+        {
+            slide_img.src = _none_poster;
+        }
         slide_title.innerHTML = films.name;
     }
     catch (er){
@@ -150,15 +208,13 @@ async function GetData()
             const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const films = await data.json();
             console.log(films);
-            if(films.poster.url != null)
+
+            card[i].children[0].src = films.poster.url || films.poster.previewUrl;
+            if(films.poster.url == null && films.poster.previewUrl == null)
             {
-                card[i].children[0].src = films.poster.url;
-                
-            }
-            else{
                 card[i].children[0].src = _none_poster;
-                slide_img.src = _none_poster;
             }
+
             if(films.name != null)
             {
                 card[i].children[1].innerHTML = films.name;
@@ -168,12 +224,13 @@ async function GetData()
                 card[i].children[1].innerHTML = films.alternativeName;
 				card[i].children[1].href = `page.html?name=${films.alternativeName}`;
             }
-
+            card[i].children[2].innerHTML = films.description;
         }
         catch(er){
             card[i].children[0].src = _none_poster;
             card[i].children[1].innerHTML = "none";
             card[i].children[1].href = 'page.html?error';
+            card[i].children[2].innerHTML = "Тут описание";
             console.log(`error: ${er}`)
         }
     }

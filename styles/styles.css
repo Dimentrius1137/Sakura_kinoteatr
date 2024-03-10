@@ -2,7 +2,7 @@ html, body{
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 *{
     box-sizing: border-box;
@@ -16,12 +16,54 @@ header{
     position: relative;
     z-index: 3;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 }
+
+.header_elements{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+.search{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    
+}
+.search > input{
+    margin: 0;
+    width: 100%;
+}
+
+.search_drop_list{
+    display: none;
+    position: absolute;
+    top: 100%;
+    margin: 0;
+    color: red;
+    background-color: gray;
+    padding: 0;
+    list-style-type: none;
+}
+
+.search_drop_list > li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+
 .drop_menu{
     height: 80px;
     display: flex;
-
+    position: relative;
     /* justify-content: start; */
 
         align-items: end;
@@ -68,10 +110,13 @@ header{
 .logo{
     width: 40px;
     height: 50px;
+
 }
 .logo-cont{
     display: flex;
     flex-direction: column;
+    position: relative;
+    z-index: 2;
 }
 /*МЕНЮ В ХЭДЕРЕ*/
 :root{
@@ -96,8 +141,8 @@ span{
     height: 40px;
     border-radius: 50%;
     background-color: white;
+    padding-left: var(--general);
     margin-left: var(--general);
-    
 }
 
 
@@ -207,6 +252,14 @@ p{
     
 }
 
+.display_mode{
+    width: 20px;
+    height: 20px;
+    position: sticky;
+    top:50%;
+    right: 95%;
+    z-index: 3;
+}
 
 .catalog{
     width: 100%;
@@ -218,10 +271,16 @@ p{
     grid-template-columns: repeat(4, 400px);
     grid-template-rows: repeat(2, 400px);
 }
+.catalog-list{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
 
 .card{
-    width: 200px;
-    height: 300px;
+    width: 222px;
+    height: 320px;
     border: 1px solid black;
     position: relative;
     word-wrap: break-word;
@@ -233,10 +292,43 @@ p{
 }
 
 .poster{
-   width: 200px;
-   max-height: 250px; 
+   min-width: 200px;
+   max-height: 260px; 
 }
 
+.desc{
+
+    display: none;
+}
+.name_of_title{
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    word-break: break-all;
+}
+.list_mode{
+    display: grid;
+    justify-content: start;
+    border: 1px solid gray;
+    grid-template-areas:
+    "B . C"
+    "B . C"
+    "A . C";
+
+    grid-template-columns: 200px 20px 1fr;
+}
+.list_mode > .poster{
+    grid-area: B;
+    max-height: 140px; 
+}
+.list_mode > .desc{
+
+    grid-area: C;
+    align-self: center;
+}
+.list_mode > .name_of_title{
+    grid-area: A;
+}
 .more{
     position: relative;
     left: 50%;
@@ -302,6 +394,9 @@ p{
 
 /*на других мониторах*/
 @media (min-width: 1000px) and (max-width: 1600px) {
+    .search{
+        width: 80%;
+    }
     .swiper{
         width: 800px;
         height: 350px;
@@ -310,6 +405,13 @@ p{
     .catalog{
         grid-template-columns: repeat(3, 350px);
     }
+    .catalog-list{
+        width: 75%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        
+    }
 
     .swiper .swiper-slide > img{
         border: 7px solid gray;
@@ -317,11 +419,58 @@ p{
 }
 
 /*для мобилки*/
+@media(max-height: 700px)
+{
+    .display_mode{
+        top:70%;
+
+    }
+}
 @media (max-width: 1000px) {
 
+
+    .menu{
+        width: 100%;
+        position: absolute;
+        background-color: black;
+    }
+    .button_state{
+       background-image: url('../interface_items/close.png');
+        background-size: cover;
+        background-color: white;
+       width: 40px;
+       height: 40px;
+       margin: 10px;
+       float: right;
+
+    }
+    .button_state.open{
+        background-image: url('../interface_items/open.png');
+        background-color: white;
+ 
+     }
+    .header_elements{
+        display: none;
+    }
+    .header_elements > *{
+        margin-top: 10px;
+        margin-left: 0;
+    }
+    .header_elements.open{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+
+
+    .list_mode{
+        grid-template-columns: 90px 20px 1fr;
+    }
     .name_of_title{
         width: 100%;
-        font-size: 12px;
+        font-size: 10px;
         text-align: center;
         text-decoration: none;
     }
@@ -360,22 +509,35 @@ p{
         grid-template-rows: repeat(2, 160px);
 
     } 
-
-    .title{
-        font-size: 12px;
-        text-align: center;
+    .catalog-list{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
     }
+
     .card{
         border-radius: 15px;
         width: 90px;
         height: 130px;
         overflow: hidden;
     }
-    .poster{
-    width: 90px;
-    max-height: 110px; 
+    .title{
+        font-size: 12px;
+        text-align: center;
+
     }
 
+    .poster{
+    min-width: 90px;
+    max-height: 110px; 
+
+    }
+
+    .desc{
+        width: 100%;
+
+    }
     input{
         margin-top: var(--general);  
         width: 100px;

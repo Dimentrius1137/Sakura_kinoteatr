@@ -286,7 +286,8 @@ html, body{
                 desc.innerHTML = info.docs[0].description
                 poster.src = info.docs[0].poster.url;
                 titleName.innerHTML = URLcontent.get("name");
-                if(info.docs[0].poster.url == null)
+                poster.src =  info.docs[0].poster.previewUrl || info.docs[0].poster.url;
+                if(info.docs[0].poster.url == null && info.docs[0].poster.previewUrl == null)
                 {
                     poster.src = _none_poster;
                 }
@@ -304,6 +305,8 @@ html, body{
             loadSpinner.remove();
         }
         GetData()
+
+
     </script>
 </body>
 </html>
