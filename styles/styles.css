@@ -308,6 +308,7 @@ p{
 }
 .list_mode{
     display: grid;
+    height: 320px;
     justify-content: start;
     border: 1px solid gray;
     grid-template-areas:
@@ -319,7 +320,7 @@ p{
 }
 .list_mode > .poster{
     grid-area: B;
-    max-height: 140px; 
+    max-height: 280px; 
 }
 .list_mode > .desc{
 
@@ -467,6 +468,10 @@ p{
 
     .list_mode{
         grid-template-columns: 90px 20px 1fr;
+        height: 130px;
+    }
+    .list_mode > .poster{
+        max-height: 110px; 
     }
     .name_of_title{
         width: 100%;

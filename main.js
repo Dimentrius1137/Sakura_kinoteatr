@@ -1,5 +1,5 @@
 let _none_poster = "interface_items/none_pic.png"
-const catalog = document.querySelector('.catalog');
+const catalog = document.querySelector('#cat');
 const moreBtn = document.querySelector('.more');
 const navbar = document.querySelector('.navbar');
 const navbarBtn = document.querySelector('.open_close_navbar');
@@ -17,11 +17,17 @@ state_btn.addEventListener('click', (el) => {
     h_elements.classList.toggle('open');
     // Сделать меню анимированным, покрасивше и стики
 })
-
+let cardClass = 'card';
 list_btn.addEventListener('click', () => {
     catalog.classList.toggle('catalog-list');
     catalog.classList.toggle('catalog');
-
+    if(catalog.classList.contains('catalog-list'))
+    {
+        cardClass = 'list_mode';
+    }
+    else{
+        cardClass = 'card'
+    }
     catalog.querySelectorAll('#newCard').forEach((el) => {
         el.classList.toggle(('card'));
         el.classList.toggle(('list_mode'));  
@@ -38,6 +44,27 @@ list_btn.addEventListener('click', () => {
     
 })
 
+function CreateCards()
+{    
+    const newCard = document.createElement('div');
+    newCard.classList.add(cardClass);
+    newCard.id = "newCard";
+    const newName = document.createElement('a');
+    newName.classList.add('name_of_title');
+    const newPoster = document.createElement('img');
+    newPoster.classList.add('poster');
+    const newDesc = document.createElement('div');
+    newDesc.classList.add('desc');
+    if(catalog.classList.contains('catalog-list'))
+    {
+        newDesc.style.display = "block";
+    }
+
+    newCard.append(newPoster, newName, newDesc);
+    catalog.appendChild(newCard);
+   
+
+}
 //поиск
 search_field.addEventListener('input', (field) => {
     
@@ -74,21 +101,7 @@ function Hide_DropMenu()
 
 
 
-function CreateCards()
-{    
-    const newCard = document.createElement('div');
-    newCard.classList.add('card');
-    newCard.id = "newCard";
-    const newName = document.createElement('a');
-    newName.classList.add('name_of_title');
-    const newPoster = document.createElement('img');
-    newPoster.classList.add('poster');
-    const newDesc = document.createElement('div');
-    newDesc.classList.add('desc');
-    newCard.append(newPoster, newName, newDesc);
-    catalog.appendChild(newCard);
 
-}
 let loadSpinner = document.createElement('div');
 let spinner = document.createElement('div');
 function Loading()
@@ -123,14 +136,16 @@ document.addEventListener('DOMContentLoaded', function()
 let rows = 2;
 function AddCards()
 {
+
+
 	iterator+= itemsCount;
     loadSpinner = document.createElement('div');
-    
+
     Loading()
     if(window.innerWidth >= 1280 && document.documentElement.getBoundingClientRect().bottom < document.documentElement.clientHeight + 150)
     {
         rows+= 2;
-        console.log(rows)
+        // console.log(rows)
         catalog.style.gridTemplateRows = `repeat(${rows}, 400px)`
        for(let i = 0; i < itemsCount; i++)
         {
@@ -138,6 +153,7 @@ function AddCards()
         }
 
         GetData();
+
     } 
 
     //Костыльная хуета
@@ -145,7 +161,7 @@ function AddCards()
     {
         
         rows+= 2;
-        console.log(rows)
+        // console.log(rows)
         catalog.style.gridTemplateRows = `repeat(${rows}, 160px)`
        for(let i = 0; i < itemsCount; i++)
         {
@@ -154,6 +170,7 @@ function AddCards()
 
         GetData();
     }
+
 }
 
 
@@ -180,11 +197,11 @@ const url = "https://api.kinopoisk.dev/v1.4/movie/random?typeNumber=4";
 async function GetData()
 {
     
-    const card = document.querySelectorAll('.card');
+    const card = document.querySelectorAll(`.${cardClass}`);
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
         const films = await data.json();
-        console.log(films);
+        // console.log(films);
         //ТУТ
         slide_img.src = films.poster.url || films.poster.previewUrl;
         if(films.poster.url == null && films.poster.previewUrl == null)
@@ -194,7 +211,7 @@ async function GetData()
         slide_title.innerHTML = films.name;
     }
     catch (er){
-        console.log(er);
+        // console.log(er);
         slide_img.src = _none_poster;
         slide_title.innerHTML = "Тут название";
     }
@@ -207,7 +224,7 @@ async function GetData()
 
             const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
             const films = await data.json();
-            console.log(films);
+            // console.log(films);
 
             card[i].children[0].src = films.poster.url || films.poster.previewUrl;
             if(films.poster.url == null && films.poster.previewUrl == null)
@@ -227,11 +244,12 @@ async function GetData()
             card[i].children[2].innerHTML = films.description;
         }
         catch(er){
+            
             card[i].children[0].src = _none_poster;
             card[i].children[1].innerHTML = "none";
             card[i].children[1].href = 'page.html?error';
             card[i].children[2].innerHTML = "Тут описание";
-            console.log(`error: ${er}`)
+            // console.log(`error: ${er}`)
         }
     }
     loadSpinner.remove();
