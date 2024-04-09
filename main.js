@@ -10,11 +10,16 @@ const list_btn = document.querySelector('.display_mode');
 const search_list = document.querySelector('.search_drop_list');
 const search_field = document.querySelector('input');
 const state_btn = document.querySelector('.button_state');
-const h_elements = document.querySelector('.header_elements');
+const menu_content = document.querySelector('.menu_content');
 
 state_btn.addEventListener('click', (el) => {
     el.target.classList.toggle('open');
-    h_elements.classList.toggle('open');
+    menu_content.style.display = "flex";
+    if(!el.target.classList.contains('open'))
+    {
+        menu_content.style.display = "none";
+    }
+
     // Сделать меню анимированным, покрасивше и стики
 })
 let cardClass = 'card';
@@ -43,6 +48,22 @@ list_btn.addEventListener('click', () => {
 })
     
 })
+//конструктором
+// function CreateCards1(newname, newposter, newdesc)
+// {
+//     const newCard = document.createElement('div');
+//     newCard.classList.add(cardClass);
+//     newCard.id = "newCard";
+
+//     this.newname = newname;
+//     this.newposter = newposter;
+//     this.newdesc = newdesc;
+
+//     newCard.innerHTML = `<img class='poster' href=${newposter}>
+//                         <a class='name_of_title' href="page.html?name=${newname}">${newname}</a>
+//                         <div class='desc'></div>`;
+//     return newCard;
+// }   
 
 function CreateCards()
 {    
@@ -75,15 +96,7 @@ search_field.addEventListener('input', (field) => {
     }
 })
 
-// async function findTtitles(value){
-    
-//     const search_url = `https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${value}`;
-    
-//     const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
-//     const films = await data.json();
-    
-//     const titles = [];
-// }
+
 
 
 //сделать через потомков динамического слайда
@@ -126,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function()
 
     for(let i = 0; i < itemsCount; i++)
     {
-        CreateCards();
+        CreateCards()
     }
 
     GetData();
@@ -201,7 +214,7 @@ async function GetData()
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
         const films = await data.json();
-        // console.log(films);
+        console.log(films);
         //ТУТ
         slide_img.src = films.poster.url || films.poster.previewUrl;
         if(films.poster.url == null && films.poster.previewUrl == null)
