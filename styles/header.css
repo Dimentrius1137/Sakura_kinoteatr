@@ -377,6 +377,7 @@ header .menu .drop_menu .list li:not(:nth-child(1), :nth-child(2)) {
     top: 80px;
     right: 0;
     overflow: hidden;
+    transition: width 0.3s;
   }
 }
 @media (max-width: 800px) {

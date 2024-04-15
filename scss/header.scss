@@ -124,6 +124,7 @@ header{
         .drop_menu{
             @include flex_y_center;
             position: relative;
+
             .list{
                 display: flex;
                 flex-direction: row;
@@ -165,13 +166,14 @@ header{
                     top:80px;
                     right: 0;
                     overflow: hidden;
-
+                    transition: width 0.3s;
                 }
 
             }
             .drop_menu.open{
                 @media(max-width: 800px){
                     width: 100%;
+                    
                 }
             }
         }

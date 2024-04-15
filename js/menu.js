@@ -23,24 +23,18 @@ search_field.addEventListener('input', (field) => {
 })
 
 
-async function getDataInSearch(name)
-{
-    try{
-        const data1 = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${name}`, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
-        const list = await data1.json();
-        return list.docs[0].name
-    }
-    catch(er){
-        return "Нет совпадений" + er
-    }
+// async function getDataInSearch(name)
+// {
+//     try{
+//         const data1 = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${name}`, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+//         const list = await data1.json();
+//         return list.docs[0].name
+//     }
+//     catch(er){
+//         return "Нет совпадений" + er
+//     }
 
-}
-
-function Hide_DropMenu()
-{
-    dropMenu.classList.toggle("list");
-    arrow.classList.toggle("top-arrow-up");
-}
+// }
 
 function ScrollToStart()
 {
@@ -184,7 +178,7 @@ function CreateCards()
             CreateCards()
         }
     
-        GetData();
+        // GetData();
         
     })
     
@@ -219,7 +213,7 @@ function CreateCards()
             CreateCards();
         }
 
-        GetData();
+        // GetData();
     }
 
 
