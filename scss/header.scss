@@ -1,3 +1,12 @@
+@import "footer";
+@import "main";
+
+// @font-face {
+//     font-family: 'RobotoSlab';
+//     src: url(); 
+// }
+
+
 @mixin off-otstup{
     margin: 0;
     padding: 0;
@@ -16,6 +25,8 @@
 }
 *{
     box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: bold
 }
 html, body {
         @include off-otstup;
@@ -39,26 +50,67 @@ html, body {
 }
 
 
+.leaf__fall{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    .leaf{
+        position: absolute;
+        transform: rotate(45deg);
+        width: 14px;
+        height: 14px;
+        animation: leaf_falling 8s linear;
+    }
+}
+
+@keyframes leaf_falling{
+    0%{
+        top: -50px;
+        transform: rotate(0deg);
+
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        top:95vh;
+        left: 100%;
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
 header{
     width: 100%;
     height: 80px;
-    background-color: rgba(0, 0, 0, 0.9);
-    
+    background: linear-gradient( rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.5) 100%);
     color: white;
     display: flex;
     justify-content: space-between;
-    position: relative;
+    position: fixed;
     z-index: 3;
-
+    transition: height 0.2s;
+    @media(max-width: 800px)
+    {
+        background: rgb(0, 0, 0, 0.9);
+    }
     /*ЛОГОТИП*/
 
     .logo-cont{
         @include flex_y_center;
         height: 100%;
         .logo{
-            width: 40px;
-            height: 40px;
-            margin: 10px;
+            width: 70px;
+            height: 70px;
+        }
+        .site__name{
+            font-family: Impact;
+            font-size: 40px;
+            margin-left: 20px;
+            font-weight: 100;
+            @media (max-width: 800px){
+                display: none;
+            }
         }
     }
 
@@ -79,6 +131,12 @@ header{
                 list-style-type: none;
                 margin: 0;
                 padding: 0;
+                li{
+                    a{
+                        @include links(white)
+                    }
+                
+                }
                     li:nth-child(1){
                         display: none;
                     }
@@ -100,14 +158,14 @@ header{
                 }
                 @media(max-width: 800px){
                     display: flex;
-                    background-color: rgba(0, 0, 0, 0.9);
+                    background-color: rgba(0, 0, 0, 0.8);
                     justify-content: end;
                     position: absolute;
                     width: 0;
                     top:80px;
                     right: 0;
                     overflow: hidden;
-                    transition: width 0.3s
+
                 }
 
             }
@@ -146,6 +204,7 @@ header{
             .search__list{
                 display: none;
                 position: absolute;
+                top: 50px;
                 z-index: 3;
                 margin: 0;
                 background-color: gray;
@@ -227,6 +286,7 @@ header{
     
 
         
+
 
         
 

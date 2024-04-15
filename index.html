@@ -5,30 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Кинотеатр</title>
     <!-- <link rel="stylesheet" href="styles/styles.css"> -->
-    <link rel="stylesheet" href="styles/styles_w_scss.css">
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+    <link rel="stylesheet" href="styles/header.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
+    <div class="leaf__fall">
+    </div>
     <div class="scroll_to_start" onclick="ScrollToStart()">
         <img src="interface_items/start-arrow.png">
     </div>
     <header>
         <div class="logo-cont">
             <a href="">
-                <svg class="logo" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                    <path d="M7 3v18"></path>
-                    <path d="M3 7.5h4"></path>
-                    <path d="M3 12h18"></path>
-                    <path d="M3 16.5h4"></path>
-                    <path d="M17 3v18"></path>
-                    <path d="M17 7.5h4"></path>
-                    <path d="M17 16.5h4"></path>
-                </svg>
+            <img class="logo" src="interface_items/logos/sakura1.png">
             </a>
+            <div class="site__name">Сакура</div>
         </div>
         <div class="menu"> 
                 <div class="drop_menu">
@@ -56,63 +47,46 @@
         </div>
 
     </header>
+    <main>      
+        <div class="swiper">
+  
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" id="dynamic">
+                    <div class="title">
+                        Название
+                    </div>
+                    <div class="img-cont">
+                        <img class="dynamic_img" src="interface_items/none_pic.png">
+                    </div>
+                </div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/artorias.jpg"></div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/koshki.jpg"></div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/from_akame.jpg"></div>
+            </div>
 
-    <!-- <main>
-        <button class="open_close_navbar">вкл</button>
-        <div class="navbar-cont">
-            <nav class="navbar">
-                <a href="">Фильмы</a>
-                <a href="">Сериалы</a>
-                <ul>
-                    Категории
-                    <li><a href="">Фильмы</a></li>
-                    <li><a href="">Сериалы</a></li>
-                    <li><a href="">Мультфильмы</a></li>
-                    <li><a href="">Аниме</a></li>
-                    <li><a href="">Мультсериалы</a></li>
-                </ul>
-            </nav>
-        </div>
-        
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
         <div class="main-content">
 
-            <div class="swiper">
-  
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" id="dynamic">
-                        <div class="title">
-                            Название
-                        </div>
-                        <div class="img-cont">
-                            <img class="dynamic_img" src="">
-                        </div>
-                    </div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/artorias.jpg"></div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/koshki.jpg"></div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/from_akame.jpg"></div>
-                </div>
-
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
-
-            <p>Каталог:</p>
+            <p>Бесконечный каталог:</p>
             <img class="display_mode" src="interface_items/list.png" alt="">
             <div class="catalog" id="cat">       
             </div>
-
+        
 
         </div>
 
     </main>
-    <button class="more" onclick="AddCards()">Ещё</button> -->
+    <button class="more" onclick="AddCards()">Ещё</button>
     <footer>
         <div class="link-slider"></div>
     </footer> 
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="menu.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/particles.js"></script>
  
 </body>
 </html>
