@@ -178,7 +178,7 @@ function CreateCards()
             CreateCards()
         }
     
-        // GetData();
+        GetData();
         
     })
     
@@ -213,7 +213,7 @@ function CreateCards()
             CreateCards();
         }
 
-        // GetData();
+        GetData();
     }
 
 

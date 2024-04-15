@@ -43,9 +43,18 @@ html, body {
     right: 50px;
     top: 87%;
     background-color: white;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px black;
+    img{
+        width: 40px;
+        height: 40px;
+    }
     @media(max-width: 900px)
     {
         right: 20px;
+        width: 40px;
+        height: 40px;
+
     }
 }
 
