@@ -16,6 +16,7 @@ filter__bar.addEventListener('click', (el)=> {
 }) 
 
 const search = document.querySelector('.main__search__field');
+
 function Search_focus(){
     search.focus();
 }

@@ -16,8 +16,8 @@ function Create(particle, pos){
 
 function Falling_Animation(){
         const leaf = document.createElement('img');
-        let leaf_count = GetRandomPos();
-        Create(leaf, leaf_count)
+        let leaf_position = GetRandomPos();
+        Create(leaf, leaf_position)
 
         setTimeout(() => { leaf.remove()}, 8000);
     // //  let raw = requestAnimationFrame(Falling_Animation)
@@ -29,15 +29,6 @@ function Falling_Animation(){
 
     }
 }
-
-    // const leafs = document.querySelectorAll('.leaf');
-
 window.addEventListener('DOMContentLoaded', () => {
-
-        setInterval(Falling_Animation, 1000);
-    
-
-
-
-    
+        setInterval(Falling_Animation, 1000);   
 });

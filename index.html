@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Кинотеатр</title>
     <!-- <link rel="stylesheet" href="styles/styles.css"> -->
-    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
     <div class="leaf__fall">
-    </div>
-    <div class="scroll_to_start" onclick="ScrollToStart()">
-        <img src="interface_items/start-arrow.png">
     </div>
     <header>
         <div class="logo-cont">
@@ -25,9 +22,9 @@
                 <div class="drop_menu">
                     <ul class="list">
                         <li><button>Log In</button></li>
-                        <li>Главная</li>
-                        <li><a href="search.html">Фильтры</a></li>
-                        <li>О нас</li>
+                        <li><a href="index.html">Главная</a><div></div> </li>
+                        <li><a href="search.html">Фильтры</a><div></div></li>
+                        <li>О нас<div></div></li>
                     </ul>
                 </div>
                 <div class="search__cont">
@@ -47,7 +44,10 @@
         </div>
 
     </header>
-    <main>      
+    <main>     
+        <div class="scroll_to_start" onclick="ScrollToStart()"> 
+            <img src="interface_items/start-arrow.png">
+        </div>
         <div class="swiper">
   
             <div class="swiper-wrapper">
@@ -70,7 +70,7 @@
           </div>
         <div class="main-content">
 
-            <p>Бесконечный каталог:</p>
+            <p>Каталог:</p>
             <img class="display_mode" src="interface_items/list.png" alt="">
             <div class="catalog" id="cat">       
             </div>
@@ -81,7 +81,18 @@
     </main>
     <button class="more" onclick="AddCards()">Ещё</button>
     <footer>
-        <div class="link-slider"></div>
+        <div class="footer__desc">
+
+        </div>
+        <div class="footer__contacts">
+
+        </div>
+        <div class="footer__links">
+
+        </div>
+        <div class="footer_media">
+
+        </div>
     </footer> 
     
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
