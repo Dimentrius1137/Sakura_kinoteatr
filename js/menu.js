@@ -9,31 +9,38 @@ const loup = document.querySelector('.loup');
 const switch_menu = document.querySelector('.switch_menu');
 const drop_menu = document.querySelector('.drop_menu')
 
-const item = document.createElement('li');
-search_list.appendChild(item)
-search_field.addEventListener('input', (field) => {
+
+
+search_field.addEventListener('input', async (field) => {
     search_list.style.display = "block";
-       getDataInSearch(`"${field.target.value}"`).then((data)=> {
-            console.log(data.docs[0].name);
-        })
-        console.log(field.target.value + " ввод")
-    if(field.target.value == "")
-    {
+    search_list.innerHTML = "";
+    const item = document.createElement('a');
+    try {
+        const element =
+         await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=1&query=${field.target.value}`,
+          {
+            headers: 
+                { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' }
+          }
+    );
+        const text = await element.json();
+        item.innerHTML = text.docs[0].name;
+    
+        item.href = `page.html?name=${text.docs[0].name}`
+        if (element.status == 403)
+        {
+            throw "Ошибка"
+        }
+    } 
+    catch (err) {
+        console.error(err);
+        item.innerHTML = "Ничего не найдено";
+    }
+    search_list.appendChild(item);
+    if(field.target.value === "") {
         search_list.style.display = "none";
     }
-
-})
-async function getDataInSearch(name)
-{
-    try{
-        const data1 = await fetch(`https://api.kinopoisk.dev/v1.4/movie/search?page=1-10&limit=1&query=${name}`, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
-        return list = await data1.json();
-    }
-    catch(er){
-        return "Нет совпадений" + er
-    }
-
-}
+});
 
 function ScrollToStart()
 {
@@ -53,43 +60,14 @@ function Open()
 
 switch_menu.addEventListener('click', () => {
     Open(switch_menu, drop_menu);
+    document.querySelector('header').style.background = "rgba(0, 0, 0, 0.9)";
 })
 loup.addEventListener('click', () => {
     Open(search_field) 
 })  
 
 
-const slides = document.querySelectorAll('.swiper-slide');
 
-const slide_img = document.querySelector('.dynamic_img');
-const slide_title = document.querySelector('.title');
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-  
-
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    },
-    
-    
-    pagination: {
-        el: '.swiper-pagination',
-      },
-      slidesPerView: 1.5,
-      centeredSlides: true
-
-
-  });
-  swiper.on('slideChange', function () {
-    slides.forEach((slide) => {
-        slide.style.transition = ".2s linear"
-    })
-  });
 
 //режим списком
 let _none_poster = "interface_items/none_pic.png"
@@ -139,7 +117,7 @@ function CreateCards()
     posterContainer.appendChild(newPoster);
     const newDesc = document.createElement('div');
     newDesc.classList.add('desc');
-    if(catalog.classList.contains('catalog-list'))
+    if(catalog.classList.contains('catalog-list-mode'))
     {
         newDesc.style.display = "block";
     }
@@ -150,18 +128,21 @@ function CreateCards()
 
 
 
-    //загрзка
+    //загрузка
     let loadSpinner = document.createElement('div');
     let spinner = document.createElement('div');
-    // const leaf__fall = document.querySelector('.leaf__fall');
     function Loading()
     {
         leaf__fall.style.zIndex = "4";
-        
+        if(catalog.classList.contains('catalog-list-mode'))
+        {
+            loadSpinner.style.height = 1920 + 'px'
+        }
         loadSpinner.classList.add("loading");
         catalog.appendChild(loadSpinner);
         spinner.classList.add("spinner");
         loadSpinner.appendChild(spinner);
+
     }
 
     //размер сетки
@@ -224,9 +205,10 @@ async function GetData()
     const card = document.querySelectorAll(`.${cardClass}`);
     try{
         const data = await fetch(url, { headers: { 'X-API-KEY': 'WR46T4C-A2MMNGP-MX8DMH3-A160B0X' } });
+        if (data.status != 200) {
+            throw new Error('Ошибка доступа: сервер отказывает в доступе');
+        }
         const films = await data.json();
-        console.log(films);
-        //ТУТ
         slide_img.src = films.poster.url || films.poster.previewUrl;
         if(films.poster.url == null && films.poster.previewUrl == null)
         {
@@ -273,7 +255,7 @@ async function GetData()
             card[i].children[0].children[0].src = _none_poster;
             card[i].children[1].innerHTML = "none";
             card[i].children[1].href = 'page.html?error';
-            card[i].children[2].innerHTML = "Тут описание";
+            card[i].children[2].innerHTML = "Каждый из нас понимает очевидную вещь: консультация с широким активом не даёт нам иного выбора, кроме определения поэтапного и последовательного развития общества. Следует отметить, что высокотехнологичная концепция общественного уклада требует от нас анализа своевременного выполнения сверхзадачи. И нет сомнений, что некоторые особенности внутренней политики будут представлены в исключительно положительном свете. Не следует, однако, забывать, что внедрение современных методик способствует повышению качества экономической целесообразности принимаемых решений. Однозначно, многие известные личности объединены в целые кластеры себе подобных. Также как реализация намеченных плановых заданий способствует подготовке и реализации благоприятных перспектив. В целом, конечно, укрепление и развитие внутренней структуры обеспечивает актуальность инновационных методов управления процессами.";
             console.log(`error: ${er}`)
 
         }

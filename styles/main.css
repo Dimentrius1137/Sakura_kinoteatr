@@ -42,7 +42,6 @@ html, body {
     opacity: 0;
   }
 }
-@keyframes border_under_links {}
 header {
   width: 100%;
   height: 80px;
@@ -102,9 +101,10 @@ header .menu .drop_menu .list {
   margin: 0;
   padding: 0;
 }
-header .menu .drop_menu .list li div {
+header .menu .drop_menu .list li .bottom-line {
   width: 100%;
   height: 2px;
+  border-radius: 30px;
   background-color: white;
   transform: scaleX(0);
   transition: all 0.3s;
@@ -117,13 +117,9 @@ header .menu .drop_menu .list li:nth-child(1) {
   display: none;
 }
 header .menu .drop_menu .list li:not(:nth-child(1), :nth-child(2)) {
-  border-left: 2px solid white;
   padding-left: 15px;
 }
-header .menu .drop_menu .list li:hover {
-  animation: border_under_links 2s;
-}
-header .menu .drop_menu .list li:hover div {
+header .menu .drop_menu .list li:hover .bottom-line {
   transform: scaleX(1);
 }
 @media (max-width: 800px) {
@@ -144,16 +140,17 @@ header .menu .drop_menu .list li:hover div {
     background-color: rgba(0, 0, 0, 0.8);
     justify-content: end;
     position: absolute;
-    width: 0;
+    width: 100%;
     top: 80px;
     right: 0;
     overflow: hidden;
-    transition: width 0.3s;
+    transform: translateX(100%);
+    transition: transform 0.3s;
   }
 }
 @media (max-width: 800px) {
   header .menu .drop_menu.open {
-    width: 100%;
+    transform: translateX(0);
   }
 }
 header .search__cont {
@@ -220,6 +217,18 @@ header .profile button {
   header .profile button {
     display: none;
   }
+}
+header .profile button .bottom-line {
+  width: 100%;
+  height: 2px;
+  border-radius: 30px;
+  background-color: white;
+  transform: scaleX(0);
+  transition: all 0.3s;
+  margin-top: 2px;
+}
+header .profile button:hover .bottom-line {
+  transform: scaleX(0.7);
 }
 @media (max-width: 800px) {
   header .profile .switch_menu {
@@ -424,38 +433,7 @@ main .main-content .catalog {
     grid-template-rows: repeat(2, 160px);
   }
 }
-main .main-content .catalog-list-mode {
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-}
-main .main-content .catalog-list-mode .list_mode {
-  display: grid;
-  height: 320px;
-  justify-content: start;
-  grid-template-areas: "B . C" "B . C" "A . C";
-  grid-template-columns: 200px 20px 1fr;
-}
-main .main-content .catalog-list-mode .list_mode > .poster {
-  grid-area: B;
-  overflow: hidden;
-  max-height: 280px;
-  border-radius: 15px;
-}
-main .main-content .catalog-list-mode .list_mode > .poster img {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s;
-}
-main .main-content .catalog-list-mode .list_mode > .desc {
-  grid-area: C;
-  align-self: center;
-  color: rgb(163, 163, 163);
-}
-main .main-content .catalog-list-mode .list_mode > .name_of_title {
-  grid-area: A;
-}
-main .main-content .card {
+main .main-content .catalog .card {
   width: 222px;
   height: 320px;
   background-color: rgba(31, 27, 46, 0.7);
@@ -467,13 +445,13 @@ main .main-content .card {
   flex-direction: column;
 }
 @media (max-width: 800px) {
-  main .main-content .card {
+  main .main-content .catalog .card {
     border-radius: 15px;
     width: 90px;
     height: 130px;
   }
 }
-main .main-content .card .poster {
+main .main-content .catalog .card .poster {
   min-width: 90px;
   min-height: 100px;
   max-height: 260px;
@@ -483,23 +461,72 @@ main .main-content .card .poster {
   border-radius: 15px;
   position: relative;
 }
-main .main-content .card .poster img {
+main .main-content .catalog .card .poster img {
   width: 100%;
   height: 100%;
   transition: transform 0.5s;
 }
-main .main-content .card .desc {
+main .main-content .catalog .card .desc {
   display: none;
 }
-main .main-content .card .name_of_title {
+main .main-content .catalog .card .name_of_title {
   width: 100%;
   text-align: center;
   text-decoration: none;
   word-break: break-all;
   color: white;
+  text-decoration: none;
 }
-main .main-content .card:hover .poster img {
+main .main-content .catalog .card:hover .poster img {
   transform: scale(1.2);
+}
+main .main-content .catalog-list-mode {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+main .main-content .catalog-list-mode .list_mode {
+  border: 1px solid white;
+  width: 100%;
+  height: 320px;
+  display: grid;
+  justify-content: start;
+  grid-template-areas: "B C C" "B C C" "A C C";
+  grid-template-columns: 200px 20px 1fr;
+  grid-template-rows: 250px 0px 70px;
+}
+@media (max-width: 800px) {
+  main .main-content .catalog-list-mode .list_mode {
+    grid-template-areas: "B C C" "B C C" "A C C";
+    grid-template-columns: 1fr 2fr;
+  }
+}
+main .main-content .catalog-list-mode .list_mode > .poster {
+  grid-area: B;
+  overflow: hidden;
+  max-height: 230px;
+  max-width: 100%;
+  border-radius: 15px;
+  position: relative;
+}
+main .main-content .catalog-list-mode .list_mode > .poster img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+main .main-content .catalog-list-mode .list_mode > .desc {
+  grid-area: C;
+  color: rgb(163, 163, 163);
+  overflow: hidden;
+  margin: 20px;
+}
+main .main-content .catalog-list-mode .list_mode > .name_of_title {
+  text-align: center;
+  grid-area: A;
+  color: white;
+  text-decoration: none;
 }
 main .main-content .loading {
   width: 100%;

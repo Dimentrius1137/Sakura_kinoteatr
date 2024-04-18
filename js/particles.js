@@ -24,7 +24,6 @@ function Falling_Animation(){
     if(document.visibilityState == "hidden")
     {
             leaf__fall.innerHTML = "";
-            console.log("yep");
 
 
     }

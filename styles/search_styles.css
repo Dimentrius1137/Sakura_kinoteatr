@@ -42,7 +42,6 @@ html, body {
     opacity: 0;
   }
 }
-@keyframes border_under_links {}
 header {
   width: 100%;
   height: 80px;
@@ -102,9 +101,10 @@ header .menu .drop_menu .list {
   margin: 0;
   padding: 0;
 }
-header .menu .drop_menu .list li div {
+header .menu .drop_menu .list li .bottom-line {
   width: 100%;
   height: 2px;
+  border-radius: 30px;
   background-color: white;
   transform: scaleX(0);
   transition: all 0.3s;
@@ -117,13 +117,9 @@ header .menu .drop_menu .list li:nth-child(1) {
   display: none;
 }
 header .menu .drop_menu .list li:not(:nth-child(1), :nth-child(2)) {
-  border-left: 2px solid white;
   padding-left: 15px;
 }
-header .menu .drop_menu .list li:hover {
-  animation: border_under_links 2s;
-}
-header .menu .drop_menu .list li:hover div {
+header .menu .drop_menu .list li:hover .bottom-line {
   transform: scaleX(1);
 }
 @media (max-width: 800px) {
@@ -144,16 +140,17 @@ header .menu .drop_menu .list li:hover div {
     background-color: rgba(0, 0, 0, 0.8);
     justify-content: end;
     position: absolute;
-    width: 0;
+    width: 100%;
     top: 80px;
     right: 0;
     overflow: hidden;
-    transition: width 0.3s;
+    transform: translateX(100%);
+    transition: transform 0.3s;
   }
 }
 @media (max-width: 800px) {
   header .menu .drop_menu.open {
-    width: 100%;
+    transform: translateX(0);
   }
 }
 header .search__cont {
@@ -220,6 +217,18 @@ header .profile button {
   header .profile button {
     display: none;
   }
+}
+header .profile button .bottom-line {
+  width: 100%;
+  height: 2px;
+  border-radius: 30px;
+  background-color: white;
+  transform: scaleX(0);
+  transition: all 0.3s;
+  margin-top: 2px;
+}
+header .profile button:hover .bottom-line {
+  transform: scaleX(0.7);
 }
 @media (max-width: 800px) {
   header .profile .switch_menu {

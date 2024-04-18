@@ -67,20 +67,6 @@ html, body {
         opacity: 0;
     }
 }
-
-@keyframes border_under_links{
-    0%{
-
-    }
-
-    50%{
-
-    }
-    
-    100%{
-
-    }
-}
 header{
     width: 100%;
     height: 80px;
@@ -134,9 +120,10 @@ header{
                 margin: 0;
                 padding: 0;
                 li{
-                    div{
+                    .bottom-line{
                         width: 100%;
                         height: 2px;
+                        border-radius: 30px;
                         background-color: white;
                         transform: scaleX(0);
                         transition: all 0.3s;
@@ -151,12 +138,10 @@ header{
                     display: none;
                 }
                 li:not(:nth-child(1), :nth-child(2)){
-                    border-left: 2px solid white;
                     padding-left: 15px;
                 }
                 li:hover{
-                    animation: border_under_links 2s;
-                    div{
+                    .bottom-line{
                         transform: scaleX(1);
                         
                     }
@@ -177,17 +162,18 @@ header{
                     background-color: rgba(0, 0, 0, 0.8);
                     justify-content: end;
                     position: absolute;
-                    width: 0;
+                    width: 100%;
                     top:80px;
                     right: 0;
                     overflow: hidden;
-                    transition: width 0.3s;
+                    transform: translateX(100%);
+                    transition: transform 0.3s;
                 }
 
             }
             .drop_menu.open{
                 @media(max-width: 800px){
-                    width: 100%;
+                    transform: translateX(0);
                     
                 }
             }
@@ -252,6 +238,20 @@ header{
             border: none;
             @media (max-width: 800px){
                 display: none;
+            }
+            .bottom-line{
+                width: 100%;
+                height: 2px;
+                border-radius: 30px;
+                background-color: white;
+                transform: scaleX(0);
+                transition: all 0.3s;
+                margin-top: 2px;
+            }
+        }
+        button:hover{
+            .bottom-line{
+                transform: scaleX(0.7);
             }
         }
         @media (max-width: 800px)
