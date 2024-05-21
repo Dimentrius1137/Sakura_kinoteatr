@@ -4,107 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Кинотеатр</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <!-- <link rel="stylesheet" href="styles/styles_w_scss.css"> -->
-    <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+    <link rel="stylesheet" href="styles/main.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
-    
+    <div class="leaf__fall">
+    </div>
     <header>
         <div class="logo-cont">
-            <a href="" class="logo-link"><img src="interface_items/logo.jpg" class="logo"></a>
-            Логотип
+            <a href="">
+            <img class="logo" src="interface_items/logos/sakura1.png">
+            </a>
+            <div class="site__name">Сакура</div>
         </div>
-        
-        <div class="menu">
-            <div class="button_state"></div>
-            <div class="header_elements">
-                <div class="search">
-                    <input placeholder="Поиск" type="text">
-                    <ul class="search_drop_list">
-                        <li>111111111111</li>
-                        <li>111111111111</li>
-                        <li>111111111111</li>
-                        <li>111111111111</li>
+        <div class="menu"> 
+                <div class="drop_menu">
+                    <ul class="list">
+                        <li><button>Log In</button></li>
+                        <li><a href="index.html">Главная</a><div class="bottom-line"></div> </li>
+                        <li><a href="search.html">Фильтры</a><div class="bottom-line"></div></li>
+                        <li>О нас<div class="bottom-line"></div></li>
                     </ul>
                 </div>
-            
-                <span>Войти</span>
-                <img src="interface_items/none_pic.png" alt="" class="user-image">
-                <div class="drop_menu">
-                    <img src="interface_items/arrow.png" alt="" class="top-arrow" onclick="Hide_DropMenu()">
-                    <ul class="list-hide">
-                        <li>Личный кабинет</li>
-                        <li>Настройки</li>
-                        <li>Сменить тему</li>
-                        <li>Информация</li>
+                <div class="search__cont">
+                    <input placeholder="Поиск" type="text" class="search__field">
+                    <img src="interface_items/loup.svg" class="loup">
+                    <ul class="search__list">
                     </ul>
                 </div>
             </div>
+        <div class="profile">
+            <div class="switch_menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <button>Log In <div class="bottom-line"></div></button>
         </div>
-   
-            
 
     </header>
-
-    <main>
-        <button class="open_close_navbar">вкл</button>
-        <div class="navbar-cont">
-            <nav class="navbar">
-                <a href="">Фильмы</a>
-                <a href="">Сериалы</a>
-                <ul>
-                    Категории
-                    <li><a href="">Фильмы</a></li>
-                    <li><a href="">Сериалы</a></li>
-                    <li><a href="">Мультфильмы</a></li>
-                    <li><a href="">Аниме</a></li>
-                    <li><a href="">Мультсериалы</a></li>
-                </ul>
-            </nav>
+    <main>     
+        <div class="scroll_to_start" onclick="ScrollToStart()"> 
+            <img src="interface_items/start-arrow.png">
         </div>
-        
-        <div class="main-content">
-
-            <div class="swiper">
+        <div class="swiper">
   
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" id="dynamic">
-                        <div class="title">
-                            Название
-                        </div>
-                        <div class="img-cont">
-                            <img class="dynamic_img" src="">
-                        </div>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" id="dynamic">
+                    <div class="title">
+                        Название
                     </div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/artorias.jpg"></div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/koshki.jpg"></div>
-                    <div class="swiper-slide"><img class="local_img" src="interface_items/from_akame.jpg"></div>
+                    <div class="img-cont">
+                        <img class="dynamic_img" src="interface_items/none_pic.png">
+                    </div>
                 </div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/artorias.jpg"></div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/koshki.jpg"></div>
+                <div class="swiper-slide"><img class="local_img" src="interface_items/from_akame.jpg"></div>
+            </div>
 
-                <div class="swiper-pagination"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-              </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        <div class="main-content">
 
             <p>Каталог:</p>
             <img class="display_mode" src="interface_items/list.png" alt="">
             <div class="catalog" id="cat">       
             </div>
-
+        
 
         </div>
 
     </main>
     <button class="more" onclick="AddCards()">Ещё</button>
     <footer>
-    </footer>
+        <div class="row">
+            <div class="section footer__desc">
+                <div class="footer__title">Кинотеатр "Сакура"</div>
+                <p>Это онлайн кинотеатр и пятое, десятое что здесь обычно пишут</p>
+            </div>
+            <div class="section footer__contacts">
+                <div class="footer__title">Контакты</div>
+                <ul class="footer__contacts__list">
+                    <li>Россия г. Ярославль</li>
+                    <li>Улица... дом...</li>
+                    <li>Индекс: 000000</li>
+                </ul>
+                <div class="email">example@mail.ru</div>
+                <div class="phone"> 8 800 555 45 25</div>
+            </div>
+            <div class="section footer__links">
+                <div class="footer__title">Ссылки</div>
+                <ul class="footer__links__list">
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="">Новости</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Команда</a></li>
+                </ul>
+            </div>
+            <div class="section footer__social">
+                <div class="footer__title">Мы в социальных сетях</div>
+                <div class="footer__social__icons">
+                    <a href="https://github.com/Dimentrius1137"><img src="interface_items/github.png" class="social-icon"></a>
+                    <a href="#"><img src="interface_items/vk.png" class="social-icon"></a>
     
+                </div>
+            </div>
+        </div>
+        
+    </footer> 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="main.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/particles.js"></script>
  
 </body>
 </html>

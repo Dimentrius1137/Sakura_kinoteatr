@@ -1,0 +1,328 @@
+
+@font-face {
+    font-family: Qanelas-Light;
+    src: url(../fonts/Qanelas-Light.ttf); 
+}
+@font-face {
+    font-family: Qanelas-ExtraBold;
+    src: url(../fonts/Qanelas-ExtraBold.ttf); 
+}
+
+@mixin off-otstup{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+@mixin links($color){
+    text-decoration: none;
+    color: $color;
+} 
+
+
+@mixin flex_y_center{
+    display: flex;
+    align-items: center;
+}
+*{
+    box-sizing: border-box;
+    font-family: Qanelas-ExtraBold;
+    font-weight: bold
+}
+html, body {
+        @include off-otstup;
+        height: 100vh;
+        background-color: #100e19;
+
+        
+} 
+
+
+
+
+.leaf__fall{
+    width: 100%;
+    height: 0;
+    position: fixed;
+    z-index: 0;
+    .leaf{
+        position: absolute;
+        transform: rotate(45deg);
+        width: 14px;
+        height: 14px;
+        animation: leaf_falling 8s linear;
+    }
+}
+
+@keyframes leaf_falling{
+    0%{
+        top: -50px;
+        transform: rotate(0deg);
+
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        top:95vh;
+        left: 100%;
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+}
+header{
+    width: 100%;
+    height: 80px;
+    background: rgba(0, 0, 0, 0);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    z-index: 4;
+    transition: height 0.2s;
+    @media(max-width: 800px)
+    {
+        background: rgb(0, 0, 0, 0.0);
+    }
+    /*ЛОГОТИП*/
+
+    .logo-cont{
+        @include flex_y_center;
+        height: 100%;
+        .logo{
+            width: 70px;
+            height: 70px;
+        }
+        .site__name{
+            font-family: Qanelas-Light;
+            font-size: 40px;
+            margin-left: 20px;
+            font-weight: 100;
+            @media (max-width: 800px){
+                display: none;
+            }
+        }
+    }
+
+    /*МЕНЮ*/
+    .menu{
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        padding: 30px;
+        @include flex_y_center;
+        justify-content: center;
+        gap: 30px;
+        .drop_menu{
+            @include flex_y_center;
+            position: relative;
+
+            .list{
+                display: flex;
+                flex-direction: row;
+                gap: 15px;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li{
+                    .bottom-line{
+                        width: 100%;
+                        height: 2px;
+                        border-radius: 30px;
+                        background-color: white;
+                        transform: scaleX(0);
+                        transition: all 0.3s;
+                    }
+                }
+                li{
+                    a{
+                        @include links(white)
+                    }
+                }
+                li:nth-child(1){
+                    display: none;
+                }
+                li:not(:nth-child(1), :nth-child(2)){
+                    padding-left: 15px;
+                }
+                li:hover{
+                    .bottom-line{
+                        transform: scaleX(1);
+                        
+                    }
+                }
+                    @media(max-width: 800px){
+                        flex-direction: column;
+                        li:nth-child(1){
+                            display: block;
+                        }
+                        li:not(:nth-child(1), :nth-child(2)){
+                            border: none;
+                            padding: 0;
+                        }
+                    }
+                }
+                @media(max-width: 800px){
+                    display: flex;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    justify-content: end;
+                    position: absolute;
+                    width: 100%;
+                    top:80px;
+                    right: 0;
+                    overflow: hidden;
+                    transform: translateX(100%);
+                    transition: transform 0.3s;
+                }
+
+            }
+            .drop_menu.open{
+                @media(max-width: 800px){
+                    transform: translateX(0);
+                    
+                }
+            }
+        }
+
+        .search__cont {
+            position: relative;
+            @include flex_y_center;
+            height: 100%;
+            margin: 0;
+            gap: 30px;
+
+            .search__field{
+                margin: 0;  
+                width: 100%;
+                height: 30px;
+                border-radius: 5px;
+                border: none;
+                @media(max-width: 800px){
+                    transform: scaleX(0);
+                    transition: all 0.3s;
+                }   
+            }
+            .search__field.open{
+                transform: scaleX(1);
+
+            }
+            .search__field:focus {
+                background-color: darken($color: white, $amount: 10%);
+                outline: none;
+                }
+            .search__list{
+                display: none;
+                position: absolute;
+                flex-direction: column;
+                top: 50px;
+                z-index: 3;
+                margin: 0;
+                background-color: #07060c;
+                border-radius: 15px;
+                padding: 0;
+                list-style-type: none;
+                max-height: 400px;
+                overflow-y: auto;
+                li{
+                    width: 200px;
+                    min-height: 40px;
+                    height: auto;
+                    @include flex_y_center;
+                    justify-content: start;
+                    padding: 0px 10px;
+                    border: 1px solid #100e19;
+                    a{
+                        @include links(white);
+                        
+                    }
+                }
+                
+            }
+            .loup{
+                display: block;
+            }
+
+        }
+
+    .profile{ 
+        margin: 10px;
+        @include flex_y_center;
+        button{
+            width: 80px;
+            height: 30px;
+            background: none;
+            color: white;
+            border: none;
+            @media (max-width: 800px){
+                display: none;
+            }
+            .bottom-line{
+                width: 100%;
+                height: 2px;
+                border-radius: 30px;
+                background-color: white;
+                transform: scaleX(0);
+                transition: all 0.3s;
+                margin-top: 2px;
+            }
+        }
+        button:hover{
+            .bottom-line{
+                transform: scaleX(0.7);
+            }
+        }
+        @media (max-width: 800px)
+        {
+            .switch_menu{
+                display: block;
+                position: relative;
+                transition: transform 0.5s;
+                width: 30px;
+                height: 20px;
+                div{
+                    border: 1px solid white;
+                    position: absolute;
+                    width: 100%;
+                    transition: all 0.7s;
+                }
+                div:nth-child(1){
+                    top: 0;
+                }
+                div:nth-child(2){
+                    top: 50%;
+                }
+                div:nth-child(3){
+                    top: 100%
+                }
+            }
+            .switch_menu.open{
+                div{
+                    transition: all 0.5s ease-out;
+                }
+                div:nth-child(1){
+                    top: 50%;
+                    transform: rotate(45deg);
+                }
+                div:nth-child(2){
+                    top: 50%;
+                    display: none;
+                }
+                div:nth-child(3){
+                    top: 50%;
+                    transform: rotate(-45deg);
+                }
+
+            }
+            
+        }
+    }
+}
+    
+
+        
+
+
+        
+
+
+       

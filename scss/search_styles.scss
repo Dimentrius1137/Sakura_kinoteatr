@@ -1,0 +1,265 @@
+@import "header";
+@import "footer";
+@import "fixed_btns";
+
+main{
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .search__container{
+        width: 100%;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .search__wrapper{
+            width: 40%;
+            height: 40px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: end;
+            position: relative;
+            img{
+                width: 25px;
+                height: 25px;
+                position: absolute;
+                margin-right: 10px;
+            }
+            img:hover{
+                cursor: pointer;
+            }
+            .main__search__field{
+                width: 100%;
+                height: 40px;
+                border-radius: 4px;
+                outline: none;
+                border: none;
+                font-size: 25px;
+                @media(max-width: 900px)
+                {   
+                    width: 100%;
+                    font-size: 14px;
+                }
+            }
+            @media(max-width: 900px)
+            {   
+                width:80%;
+            }
+        }
+    }
+    .menu{
+        width: 80%;
+        min-height: 200px;
+        height: auto;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+
+        .selector_menu{
+            border-radius: 4px;
+            width: 100%;
+            height: 100px;
+            display: grid;     
+            grid-template-columns: repeat(5, 20%);
+            justify-content: center;
+            align-items: center;
+            @media(max-width: 900px)
+            {
+                grid-template-columns: repeat(1, 100%);
+                gap: 20px;
+                height: auto;
+            }
+            .selector{
+                border-radius: 4px;
+                margin: auto;
+                width: 90%;
+                height: 50px;
+                background-color: rgb(62, 62, 240);
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                line-height: 50px;
+                span{
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    text-align: center;
+                    vertical-align: middle;
+                }
+                span:after{
+                    content: "▼";
+                    font-size: 15px;
+    
+                }
+                .dropDown__content{
+                    border-radius: 4px;
+                    display: none;
+                    top: 55px;
+                    position: absolute;
+                    z-index: 2;
+                    min-width: 100%;
+                    width: auto;
+                    height: auto;
+                    padding: 10px;
+                    ul{
+                        list-style: none;
+                        padding-left: 0;
+                        width: auto;
+                        max-height: 300px;
+                    }
+    
+                    
+                    ul:nth-child(2){
+                        margin: 0;
+                        padding: 0;
+                        li
+                        {
+    
+                            height: auto;
+                            display: flex;
+                            flex-direction: row;
+                            input{
+                                margin: 5px;
+                                margin-top: 20px;
+                               width: 100px;
+                               height: 30px;
+                               border-radius: 4px;
+                               border: none;
+                            
+                            }
+                        }
+                    }
+    
+                }
+            }
+            .selector.open{  
+                .dropDown__content{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    background-color: gray;      
+                }
+    
+                span:after{
+                    display: inline-block;
+                    transform: rotate(180deg);
+                }
+            }
+            .selector__genre{
+                .dropDown__content{
+                    overflow-y: scroll;
+                }
+                
+                
+            }
+    
+        }
+        .tags{
+            height: auto;
+            .tag{
+                background-color: rgb(154, 154, 233);
+                border-radius: 5px;
+                padding: 5px;
+                margin: 10px;
+                .remove{
+                    position: relative;
+                    width: 20px;
+                    height: 20px;
+                    margin-left: 5px;
+                    top: 5px;
+                }
+            }
+        }
+        .search__button__cont{
+            padding: 10px;
+            position: sticky;
+            width: 100%;
+            top: 100%
+        }
+    }
+   p{
+    color: white;
+   }
+    .catalog{
+        width: 100%;
+        position: relative;
+        /* flex-grow: 1; */
+        justify-content: center;
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(4, 400px);
+        grid-template-rows: repeat(2, 400px);
+        @media (max-width: 1366px)
+        {
+            grid-template-columns: repeat(3, 350px);
+        }
+        @media(max-width: 800px){
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(2, 160px);
+        }
+        .card{
+            width: 222px;
+            height: 320px;
+            background-color: rgba(31,27,46,0.7);
+            position: relative;
+            word-wrap: break-word;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            @media(max-width: 800px){
+                border-radius: 15px;
+                width: 90px;
+                height: 130px;
+            }
+            .poster{
+                min-width: 90px;
+                min-height: 100px;
+                max-height: 260px; 
+                 width: 100%;
+                 height: 100%;
+                 overflow: hidden;
+                border-radius: 15px;
+                position: relative;
+                 img{
+                    width: 100%;
+                    height: 100%;
+                    transition: transform 0.5s;
+                 }
+                 }
+             
+             .desc{
+             
+                 display: none;
+             }
+             .name_of_title{
+                 width: 100%;
+                 text-align: center;
+                 text-decoration: none;
+                 word-break: break-all;
+                 color: white;
+                 text-decoration: none;
+             }
+        }
+        .card:hover{
+                .poster{
+                        img{
+                            transform: scale(1.2);
+                        }
+
+            
+
+            }
+        }
+    }
+    
+}

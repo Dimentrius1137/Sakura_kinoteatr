@@ -4,227 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
 
-        .loading{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    background-color: white;
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 50px;
-}
-.spinner{
-    position: absolute;
-    z-index: 3;
-    width: 50px;
-    height: 50px;
-    background-image: url('interface_items/loading.png');
-    background-size: cover;
-    animation: spinning 2s infinite;
-
-}
-@keyframes spinning{
-    0%{
-        transform: rotateZ(0deg);
-    }
-    100%{
-        transform: rotateZ(360deg);
-    }
-}
-.container{
-    position: relative;
-    width: 100%;
-    height: 500px;
-}
-
-img{
-    width: 200px;
-    height: 300px;
-    }
-.inner_container{
-    width: 100%;
-    height: auto;
-    display: flex;
-    margin: 0;
-    flex-direction: column;
-}
-
-.rating_KP{
-    color: white;
-    background-color: orangered;
-    margin-left: 50px;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-
-
-}
-.block1{
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-}
-.block2{
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding: 0;
-}
-.description{
-    word-break: break-all;
-    text-align: center;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 15px;
-    border: 2px solid gray;
-    width: 60%;
-}
-header{
-    width: 100%;
-    height: 80px;
-    background-color: black;
-    color: white;
-    display: flex;
-    position: relative;
-    z-index: 3;
-    justify-content: space-between;
-    align-items: center;
-}
-.drop_menu{
-    height: 80px;
-    display: flex;
-
-    /* justify-content: start; */
-
-        align-items: end;
-    flex-direction: column;
-}
-
-
-.list-hide{
-    position: absolute;
-    top: 80px;
-    margin: 0;
-    list-style-type: none;
-    padding: 0;
-    border: 1px solid black;
-    display: none;
-
-}
-.list{
-
-    display: block;
-}
-.list li{
-    background-color: gray;
-    position: relative;
-    color: red;
-    border: 1px solid gray;
-    }
-
-.top-arrow{
-    width: 50px;
-    height: 50px;
-    position: relative;
-    top: 20px;
-    transform: rotate(90deg);
-    transition: 0.5s;
-    margin: 0;
-    margin-left: var(--general);
-    margin-right: var(--general);
-}
-
-.top-arrow-up{
-    transform: rotate(90deg) rotateY(180deg);
-
-}
-
-.logo{
-    width: 40px;
-    height: 50px;
-}
-.logo-cont{
-    display: flex;
-    flex-direction: column;
-}
-/*МЕНЮ В ХЭДЕРЕ*/
-:root{
-    --general: 20px; 
-    --bg: url('interface_items/arrow.png')
-}
-/*ну да она не нужна, просто по приколу тут*/
-
-.topMenu-cont{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-span{
-    margin-left: var(--general);
-}
-.user-image{
-    
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    margin-left: var(--general);
-    
-}
-html, body{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    overflow-x: hidden;
-    height: 100vh;
-}
-
-@media (max-width: 1000px) {
-    .description{
-        width: 100%;
-    }
-    input{
-        margin-top: var(--general);  
-        width: 100px;
-        height: 30px;
-    }
-}
-    </style>
+    <link rel="stylesheet" href="styles/page.css">
 </head>
 <body>
     <header>
         <div class="logo-cont">
-            <a href="" class="logo-link"><img src="interface_items/logo.jpg" class="logo"></a>
-            Логотип
+            <a href="">
+            <img class="logo" src="interface_items/logos/sakura1.png">
+            </a>
+            <div class="site__name">Сакура</div>
         </div>
-        <div class="search">
-            Поиск: <input type="text">
-        </div>
-        
-        <div class="topMenu-cont">
-            <span>Войти</span>
-            <img src="interface_items/none_pic.png" alt="" class="user-image">
-            <div class="drop_menu">
-                <img src="interface_items/arrow.png" class="top-arrow" onclick="Hide_DropMenu()">
-                <ul class="list-hide">
-                    <li>Личный кабинет</li>
-                    <li>Настройки</li>
-                    <li>Сменить тему</li>
-                    <li>Информация</li>
-                </ul>
+        <div class="menu"> 
+                <div class="drop_menu">
+                    <ul class="list">
+                        <li><button>Log In</button></li>
+                        <li><a href="index.html">Главная</a><div class="bottom-line"></div> </li>
+                        <li><a href="search.html">Фильтры</a><div class="bottom-line"></div></li>
+                        <li>О нас<div class="bottom-line"></div></li>
+                    </ul>
+                </div>
+
             </div>
-           
-            
+        <div class="profile">
+            <div class="switch_menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <button>Log In<div class="bottom-line"></div></button>
         </div>
+
     </header>
     <div class="container">
         <h1>Page</h1>
@@ -241,13 +51,48 @@ html, body{
                         <div class="description"></div>
                 </div>
             </div>
-
-
-
-
-
     </div>
-
+    <footer>
+        <div class="row">
+            <div class="section footer__desc">
+                <div class="footer__title">Кинотеатр "Сакура"</div>
+                <p>Это онлайн кинотеатр и пятое, десятое что здесь обычно пишут</p>
+            </div>
+            <div class="section footer__contacts">
+                <div class="footer__title">Контакты</div>
+                <ul class="footer__contacts__list">
+                    <li>Россия г. Ярославль</li>
+                    <li>Улица... дом...</li>
+                    <li>Индекс: 000000</li>
+                </ul>
+                <div class="email">example@mail.ru</div>
+                <div class="phone"> 8 800 555 45 25</div>
+            </div>
+            <div class="section footer__links">
+                <div class="footer__title">Ссылки</div>
+                <ul class="footer__links__list">
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="">Новости</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Команда</a></li>
+                </ul>
+            </div>
+            <div class="section footer__social">
+                <div class="footer__title">Мы в социальных сетях</div>
+                <div class="footer__social__icons">
+                    <a href="https://github.com/Dimentrius1137">
+                        <img src="interface_items/github.png">
+                    </a>
+                    <a href="#">
+                        <img src="interface_items/vk.png">
+                    </a>
+    
+                </div>
+            </div>
+        </div>
+        
+    </footer> 
     <script>
         const container = document.querySelector('.container')
         const arrow = document.querySelector('.top-arrow');

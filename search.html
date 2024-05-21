@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/search_styles.css">
+    <link rel="stylesheet" href="libs/nouislider.min.css">
+    <link rel="stylesheet" href="libs/range_styles.css">
+</head>
+
+<body>
+    <div class="leaf__fall">
+    </div>
+    <header>
+        <div class="logo-cont">
+            <a href="">
+            <img class="logo" src="interface_items/logos/sakura1.png">
+            </a>
+            <div class="site__name">Сакура</div>
+        </div>
+        <div class="menu"> 
+                <div class="drop_menu">
+                    <ul class="list">
+                        <li><button>Log In</button></li>
+                        <li><a href="index.html">Главная</a><div class="bottom-line"></div> </li>
+                        <li><a href="search.html">Фильтры</a><div class="bottom-line"></div></li>
+                        <li>О нас<div class="bottom-line"></div></li>
+                    </ul>
+                </div>
+
+            </div>
+        <div class="profile">
+            <div class="switch_menu">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <button>Log In<div class="bottom-line"></div></button>
+        </div>
+
+    </header>
+    <main>
+        <div class="scroll_to_start" onclick="ScrollToStart()">
+            <img src="interface_items/start-arrow.png">
+        </div>
+        <div class="search__container">
+            <div class="search__wrapper">
+                
+                <input type="text" class="main__search__field" placeholder="Поиск по названию">
+                <img src="interface_items/loup.svg" alt="" onclick="Search_focus()">
+            </div>
+        </div>
+        <div class="menu">
+            <div class="selector_menu">
+                <div class="selector selector__category">
+                    <span>
+                        Категории
+                    </span>
+                    <div class="dropDown__content">
+                        <ul>
+                            <li>
+                                 <label for="movie"><input type="checkbox" id="movie">Фильмы</label>
+                            </li>
+                            <li>
+                                <label for="tv-series"><input type="checkbox" id="tv-series">Сериалы</label>
+                            </li>
+                            <li>
+                               <label for="cartoon"> <input type="checkbox" id="cartoon">Мультфильмы</label>
+                            </li>
+                            <li>
+                                <label for="animated-series"><input type="checkbox" id="animated-series">Мультсериалы</label>
+                            </li>
+                            <li>
+                               <label for="anime"><input type="checkbox" id="anime">Аниме</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selector selector__genre">
+                    <span>
+                        Жанр
+                    </span>
+                    <div class="dropDown__content">
+                        <ul>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Биография</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Боевик</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Детектив</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Детский</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Для взрослых</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Документальный</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Драма</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Комедия</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Короткометражка</label>
+                            </li>  
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Криминал</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Приключение</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Триллер</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">Ужасы</label>
+                            </li>
+                            <li>
+                                <label for=""> <input type="checkbox" id="">фентези</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selector selector__year">
+                    <span>
+                        Год
+                    </span>
+                    <div class="dropDown__content">
+                        <div id="range"></div>
+                        <ul>
+                            <li>
+                                <input type="text" id="min" class="slider-range">
+                                <input type="text" id="max" class="slider-range">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selector selector__country">
+                    <span>
+                        Страна
+                    </span>
+                    <div class="dropDown__content">
+                        <ul>
+                            <li>
+                                <label for="russia"><input type="checkbox" id="russia">Россия</label>
+                            </li>
+                            <li>
+                                <label for="USA"><input type="checkbox" id="USA">США</label>
+                            </li>
+                            <li>
+                                <label for="other"><input type="checkbox" id="other">другая</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="selector selector__rating">
+                    <span>
+                        Рейтинг
+                    </span>
+                    <div class="dropDown__content">
+                        <ul>
+                            <li>
+                                <input type="text" id="min" class="slider-range">
+                                <input type="text" id="max" class="slider-range">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tags">
+
+            </div>
+            <div class="search__button__cont">
+                <button class="button_cont">Искать</button>
+            </div>
+        </div>
+  
+            <p>Каталог:</p>
+            <img class="display_mode" src="interface_items/list.png" alt="">
+            <div class="catalog" id="cat">       
+            </div>
+
+    </main>
+    <footer>
+        <div class="row">
+            <div class="section footer__desc">
+                <div class="footer__title">Кинотеатр "Сакура"</div>
+                <p>Это онлайн кинотеатр и пятое, десятое что здесь обычно пишут</p>
+            </div>
+            <div class="section footer__contacts">
+                <div class="footer__title">Контакты</div>
+                <ul class="footer__contacts__list">
+                    <li>Россия г. Ярославль</li>
+                    <li>Улица... дом...</li>
+                    <li>Индекс: 000000</li>
+                </ul>
+                <div class="email">example@mail.ru</div>
+                <div class="phone"> 8 800 555 45 25</div>
+            </div>
+            <div class="section footer__links">
+                <div class="footer__title">Ссылки</div>
+                <ul class="footer__links__list">
+                    <li><a href="">Главная</a></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="">Новости</a></li>
+                    <li><a href="">Проекты</a></li>
+                    <li><a href="">Команда</a></li>
+                </ul>
+            </div>
+            <div class="section footer__social">
+                <div class="footer__title">Мы в социальных сетях</div>
+                <div class="footer__social__icons">
+                    <a href="https://github.com/Dimentrius1137">
+                        <img src="interface_items/github.png">
+                    </a>
+                    <a href="#">
+                        <img src="interface_items/vk.png">
+                    </a>
+    
+                </div>
+            </div>
+        </div>
+        
+    </footer> 
+    <script src="libs/nouislider.min.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/particles.js"></script>
+
+</body>
+</html>

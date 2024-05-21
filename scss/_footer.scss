@@ -1,0 +1,102 @@
+footer{
+    height: 300px;
+    background-color: #07060c;
+    position: relative;
+    z-index: 2; 
+    color: white;
+
+    .row{
+        margin: auto;
+        width: 85%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+
+
+        .footer__title{
+            font-size: 20px;
+        }
+        .section{
+            margin-top: 50px;
+            width: 100%;
+            height: calc(100% - 50px);
+            display: flex;
+            flex-direction: column;
+        }
+        .footer__desc{
+            p{
+                width: 70%;
+                font-size: 15px;
+                font-family: Qanelas-Light;
+                text-wrap: balance;
+                color: rgb(207, 207, 207);
+                height: auto;
+            }
+        }
+        .footer__contacts{
+            &__list{
+                list-style: none;
+                padding-left: 0;
+                color: rgb(207, 207, 207);
+                li{
+                    font-size: 15px;
+                    font-family: Qanelas-Light;
+                }
+            }
+            .email{
+                color: rgb(207, 207, 207);
+            }
+            .phone{
+                margin-top: 16px;
+                color: rgb(207, 207, 207);
+            }
+        }
+        .footer__links{
+            
+            &__list{
+                list-style: none;
+                padding-left: 0;
+                li{
+                    margin-top: 10px;
+                    a{
+                        text-decoration: none;
+                        color: rgb(207, 207, 207);
+                        font-size: 15px;
+                        font-family: Qanelas-Light;
+                    }
+                }
+            }
+        }
+        .footer__social{
+            &__icons{
+                a{
+                    text-decoration: none;
+                    img{
+                        margin: 10px;
+                        margin-left: 0;
+                        width: 30px;
+                        height: 30px;
+                        opacity: 0.7;
+                    }
+                    
+                }
+                
+            }
+        }
+
+    }
+    @media(max-width: 1000px){
+        height: 600px;
+        .row{
+            grid-template-columns: repeat(2, 50%);
+        }
+    }
+    @media(max-width: 800px){
+        height: auto;
+        .row{
+            grid-template-columns: repeat(1, 100%);
+
+        }
+    }
+    
+}
