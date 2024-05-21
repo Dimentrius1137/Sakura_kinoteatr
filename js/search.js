@@ -67,35 +67,39 @@ let queryArray = [];
 let queryString = '';
 let filteredQuery = `https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=name`;
 filter__bar.addEventListener('change', (el) => {
-    filtersContainer.innerHTML = "";
 
-    const filter = el.target.parentElement.innerText;
-    let currentQueries = [];
-    let withoutCheckedEl = [];
-    if(el.target.checked == true)
-    {
-        filtersArray.push(filter);
-        queryArray.push(`type=${el.target.id}`)
-    }
-    else{
-    withoutCheckedEl = filtersArray.filter((unchecked) => {       
-            return unchecked != filter
-        })
-        filtersArray = withoutCheckedEl;
 
-    currentQueries = queryArray.filter((query) => {
-            return query != `type=${el.target.id}`
-        })
-        queryArray = currentQueries;
-    }
+            filtersContainer.innerHTML = "";
+            const filter = el.target.parentElement.innerText;
+            let currentQueries = [];
+            let withoutCheckedEl = [];
+            if(el.target.checked == true)
+                {
+                    filtersArray.push(filter);
+                    queryArray.push(`type=${el.target.id}`)
+                }
+                else{
+                withoutCheckedEl = filtersArray.filter((unchecked) => {       
+                        return unchecked != filter
+                    })
+                    filtersArray = withoutCheckedEl;
+            
+                currentQueries = queryArray.filter((query) => {
+                        return query != `type=${el.target.id}`
+                    })
+                    queryArray = currentQueries;
+                }
+            
+                filtersArray.forEach((tag) => {
+                    filtersContainer.innerHTML += `<span class="tag">${tag}<img class="remove" src="interface_items/cancel.svg"><span>`;
+                })
+                queryString = queryArray.join('&')
+            
+                filteredQuery = `https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=name&${queryString}&year=${slider_range[0].value}-${slider_range[1].value}`;
+            
+        
 
-    filtersArray.forEach((tag) => {
-        filtersContainer.innerHTML += `<span class="tag">${tag}<img class="remove" src="interface_items/cancel.svg"><span>`;
-    })
-    queryString = queryArray.join('&')
-
-    filteredQuery = `https://api.kinopoisk.dev/v1.4/movie/random?notNullFields=name&${queryString}&year=${slider_range[0].value}-${slider_range[1].value}`;
-
+  
 })
 
 filtersContainer.addEventListener('click', (tag) => {
@@ -107,6 +111,11 @@ filtersContainer.addEventListener('click', (tag) => {
             checkboxes.forEach((checkbox) => {
                 if(checkbox.parentElement.innerText == name__tag.innerText)
                 {
+                    withoutCheckedEl = filtersArray.filter((unchecked) => {       
+                        return unchecked != name__tag.innerText
+                    })
+                    filtersArray = withoutCheckedEl;
+            
                     currentQueries = queryArray.filter((query) => {
                         return query != `type=${checkbox.id}`
                     })
