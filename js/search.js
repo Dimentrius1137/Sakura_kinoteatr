@@ -249,6 +249,11 @@ switch_menu.addEventListener('click', () => {
 })
 
 
+function ScrollToStart()
+{
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
 
 
 
