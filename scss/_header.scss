@@ -1,9 +1,12 @@
 
-// @font-face {
-//     font-family: 'RobotoSlab';
-//     src: url(); 
-// }
-
+@font-face {
+    font-family: Qanelas-Light;
+    src: url(../fonts/Qanelas-Light.ttf); 
+}
+@font-face {
+    font-family: Qanelas-ExtraBold;
+    src: url(../fonts/Qanelas-ExtraBold.ttf); 
+}
 
 @mixin off-otstup{
     margin: 0;
@@ -23,7 +26,7 @@
 }
 *{
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: Qanelas-ExtraBold;
     font-weight: bold
 }
 html, body {
@@ -91,7 +94,7 @@ header{
             height: 70px;
         }
         .site__name{
-            font-family: Impact;
+            font-family: Qanelas-Light;
             font-size: 40px;
             margin-left: 20px;
             font-weight: 100;
@@ -104,9 +107,11 @@ header{
     /*МЕНЮ*/
     .menu{
         height: 100%;
-        width: auto;
+        width: 100%;
+        position: absolute;
         padding: 30px;
         @include flex_y_center;
+        justify-content: center;
         gap: 30px;
         .drop_menu{
             @include flex_y_center;
@@ -199,6 +204,7 @@ header{
             }
             .search__field.open{
                 transform: scaleX(1);
+
             }
             .search__field:focus {
                 background-color: darken($color: white, $amount: 10%);
@@ -207,19 +213,30 @@ header{
             .search__list{
                 display: none;
                 position: absolute;
+                flex-direction: column;
                 top: 50px;
                 z-index: 3;
                 margin: 0;
-                background-color: gray;
+                background-color: #07060c;
+                border-radius: 15px;
                 padding: 0;
                 list-style-type: none;
-                li {
-                    height: 30px;
-                    display: flex;
-                    align-items: center;
-                    padding: 5px;
-                    border: 1px solid black;
+                max-height: 400px;
+                overflow-y: auto;
+                li{
+                    width: 200px;
+                    min-height: 40px;
+                    height: auto;
+                    @include flex_y_center;
+                    justify-content: start;
+                    padding: 0px 10px;
+                    border: 1px solid #100e19;
+                    a{
+                        @include links(white);
+                        
+                    }
                 }
+                
             }
             .loup{
                 display: block;

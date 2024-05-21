@@ -1,0 +1,28 @@
+.scroll_to_start{
+    position:sticky;
+    z-index: 4;
+    top: 70%;
+    left: 90%;
+    
+    img{
+        background-color: white;
+        width: 40px;
+        height: 40px;
+
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px black;
+    }
+    
+    @media(max-width: 1000px){
+        transform: translateY(100PX);
+    }
+}
+
+.display_mode{
+    width: 20px;
+    height: 20px;
+    position: sticky;
+    top:50%;
+    right: 95%;
+    z-index: 3;
+}

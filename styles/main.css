@@ -1,7 +1,15 @@
 @charset "UTF-8";
+@font-face {
+  font-family: Qanelas-Light;
+  src: url(../fonts/Qanelas-Light.ttf);
+}
+@font-face {
+  font-family: Qanelas-ExtraBold;
+  src: url(../fonts/Qanelas-ExtraBold.ttf);
+}
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: Qanelas-ExtraBold;
   font-weight: bold;
 }
 
@@ -70,7 +78,7 @@ header .logo-cont .logo {
   height: 70px;
 }
 header .logo-cont .site__name {
-  font-family: Impact;
+  font-family: Qanelas-Light;
   font-size: 40px;
   margin-left: 20px;
   font-weight: 100;
@@ -82,10 +90,12 @@ header .logo-cont .site__name {
 }
 header .menu {
   height: 100%;
-  width: auto;
+  width: 100%;
+  position: absolute;
   padding: 30px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 30px;
 }
 header .menu .drop_menu {
@@ -184,19 +194,30 @@ header .search__cont .search__field:focus {
 header .search__cont .search__list {
   display: none;
   position: absolute;
+  flex-direction: column;
   top: 50px;
   z-index: 3;
   margin: 0;
-  background-color: gray;
+  background-color: #07060c;
+  border-radius: 15px;
   padding: 0;
   list-style-type: none;
+  max-height: 400px;
+  overflow-y: auto;
 }
 header .search__cont .search__list li {
-  height: 30px;
+  width: 200px;
+  min-height: 40px;
+  height: auto;
   display: flex;
   align-items: center;
-  padding: 5px;
-  border: 1px solid black;
+  justify-content: start;
+  padding: 0px 10px;
+  border: 1px solid #100e19;
+}
+header .search__cont .search__list li a {
+  text-decoration: none;
+  color: white;
 }
 header .search__cont .loup {
   display: block;
@@ -275,21 +296,96 @@ footer {
   background-color: #07060c;
   position: relative;
   z-index: 2;
+  color: white;
 }
-
-main {
+footer .row {
+  margin: auto;
+  width: 85%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+}
+footer .row .footer__title {
+  font-size: 20px;
+}
+footer .row .section {
+  margin-top: 50px;
+  width: 100%;
+  height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: center;
 }
-main .scroll_to_start {
+footer .row .footer__desc p {
+  width: 70%;
+  font-size: 15px;
+  font-family: Qanelas-Light;
+  text-wrap: balance;
+  color: rgb(207, 207, 207);
+  height: auto;
+}
+footer .row .footer__contacts__list {
+  list-style: none;
+  padding-left: 0;
+  color: rgb(207, 207, 207);
+}
+footer .row .footer__contacts__list li {
+  font-size: 15px;
+  font-family: Qanelas-Light;
+}
+footer .row .footer__contacts .email {
+  color: rgb(207, 207, 207);
+}
+footer .row .footer__contacts .phone {
+  margin-top: 16px;
+  color: rgb(207, 207, 207);
+}
+footer .row .footer__links__list {
+  list-style: none;
+  padding-left: 0;
+}
+footer .row .footer__links__list li {
+  margin-top: 10px;
+}
+footer .row .footer__links__list li a {
+  text-decoration: none;
+  color: rgb(207, 207, 207);
+  font-size: 15px;
+  font-family: Qanelas-Light;
+}
+footer .row .footer__social__icons a {
+  text-decoration: none;
+}
+footer .row .footer__social__icons a img {
+  margin: 10px;
+  margin-left: 0;
+  width: 30px;
+  height: 30px;
+  opacity: 0.7;
+}
+@media (max-width: 1000px) {
+  footer {
+    height: 600px;
+  }
+  footer .row {
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+@media (max-width: 800px) {
+  footer {
+    height: auto;
+  }
+  footer .row {
+    grid-template-columns: repeat(1, 100%);
+  }
+}
+
+.scroll_to_start {
   position: sticky;
   z-index: 4;
   top: 70%;
   left: 90%;
 }
-main .scroll_to_start img {
+.scroll_to_start img {
   background-color: white;
   width: 40px;
   height: 40px;
@@ -297,9 +393,25 @@ main .scroll_to_start img {
   box-shadow: 0px 0px 10px black;
 }
 @media (max-width: 1000px) {
-  main .scroll_to_start {
+  .scroll_to_start {
     transform: translateY(100PX);
   }
+}
+
+.display_mode {
+  width: 20px;
+  height: 20px;
+  position: sticky;
+  top: 50%;
+  right: 95%;
+  z-index: 3;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 main .swiper {
   width: 1200px;
@@ -403,14 +515,6 @@ main .main-content {
 }
 main .main-content p {
   color: rgb(163, 163, 163);
-}
-main .main-content .display_mode {
-  width: 20px;
-  height: 20px;
-  position: sticky;
-  top: 50%;
-  right: 95%;
-  z-index: 3;
 }
 main .main-content .catalog {
   width: 100%;
